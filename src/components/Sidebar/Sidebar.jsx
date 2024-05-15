@@ -1,14 +1,9 @@
-import { useNavigate } from "react-router-dom";
 import SidebarLink from "./SidebarLink"
 import styles from './Sidebar.module.scss';
-import { getAppRoutes } from '../../routes/constants/appRoutes'
+import { getAppSideBarRoutes } from '../../routes/constants/appRoutes'
 
 const Sidebar = () => {
-  const routes = getAppRoutes();
-  const navigate = useNavigate();
-  const handleRedirectToAddProduct = () => {
-    navigate("/add");
-  };
+  const routes = getAppSideBarRoutes();
   return (
     <div className={styles.sidebar}>
       {routes.map(routeProps => (

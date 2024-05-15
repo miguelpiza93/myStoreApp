@@ -11,7 +11,7 @@ const INITIAL_STATE = {
 
 const reducer = (state, payload) => ({ ...state, ...payload });
 
-const AddProduct = ({ dispatch }) => {
+const AddSupplier = ({ dispatch }) => {
 
     const [state, setState] = useReducer(reducer, INITIAL_STATE);
     const navigate = useNavigate();
@@ -61,4 +61,4 @@ const AddProduct = ({ dispatch }) => {
     );
 }
 
-export default connect()(AddProduct);
+export default connect()(AddSupplier);
