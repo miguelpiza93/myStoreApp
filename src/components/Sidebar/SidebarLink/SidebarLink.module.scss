@@ -1,0 +1,56 @@
+.item {
+  outline: none;
+
+  &:focus,
+  &:visited,
+  &:active,
+  &:hover {
+    color: inherit;
+    outline: none;
+    text-decoration: none;
+  }
+}
+
+.active {
+  background-color: #e7e8f1;
+  color: #062a67;
+  font-weight: 500;
+
+  &.withSubRoutes {
+    background-color: inherit;
+  }
+}
+
+.childRoutes {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  padding-left: 30px;
+}
+
+.subItem {
+  border-radius: 17.5px;
+  color: #353535;
+  font-size: 12px;
+  padding: 10px 24px;
+
+  &:focus,
+  &:visited,
+  &:active,
+  &:hover {
+    color: inherit;
+    outline: none;
+    text-decoration: none;
+  }
+
+  &:hover {
+    background-color: #e7e8f1;
+    color: #062a67;
+  }
+
+  &.activeSubItem {
+    background-color: #e7e8f1;
+    color: #062a67;
+    font-weight: 500;
+  }
+}
