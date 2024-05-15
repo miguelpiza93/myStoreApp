@@ -2,11 +2,12 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import styles from './SidebarItem.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faBoxesStacked, faCartFlatbed, faHome } from '@fortawesome/free-solid-svg-icons';
 
 const iconMap = {
-  HomeLineIcon: faTrash,
-  HomeIcon: faTrash,
+  SupplierIcon: faCartFlatbed,
+  ProductIcon: faBoxesStacked,
+  HomeIcon: faHome,
 };
 
 const SidebarItem = ({ icon, label, rightBadge, className, onClick }) => {

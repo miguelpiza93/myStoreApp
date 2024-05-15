@@ -4,8 +4,7 @@ import SupplierList from "../../components/Suppliers/SupplierList";
 
 export const getAppRoutes = () => [
     {
-      icon: 'HomeLineIcon',
-      iconActive: 'HomeIcon',
+      icon: 'ProductIcon',
       label: 'Products',
       href: '/products',
       rightBadge: undefined,
@@ -13,8 +12,7 @@ export const getAppRoutes = () => [
       componentToDisplay: ProductList
     },
     {
-      icon: 'HomeLineIcon',
-      iconActive: 'HomeIcon',
+      icon: 'SupplierIcon',
       label: 'Suppliers',
       href: '/suppliers',
       rightBadge: undefined,
@@ -22,8 +20,7 @@ export const getAppRoutes = () => [
       componentToDisplay: SupplierList
     },
     {
-      icon: 'HomeLineIcon',
-      iconActive: 'HomeIcon',
+      icon: 'HomeIcon',
       label: 'Create',
       href: '/products/create',
       rightBadge: undefined,
