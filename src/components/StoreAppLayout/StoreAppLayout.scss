@@ -1,0 +1,9 @@
+#container {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+}
+
+#body {
+  margin-left: 10px;
+  margin-right: 10px;
+}

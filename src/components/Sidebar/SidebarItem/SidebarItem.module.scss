@@ -2,12 +2,12 @@
   align-items: center;
   border-radius: 17.5px;
   color: #353535;
-  cursor: pointer;
   display: flex;
-  flex: 1;
-  height: 35px;
-  padding: 9px 12px 9px 18px;
+  height: 30px;
+  margin-top: 12px;
+  margin-bottom: 12px;
   width: 100%;
+  outline: none;
 
   &:hover {
     background-color: #e7e8f1;
@@ -16,12 +16,13 @@
 }
 
 .text {
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1;
 }
 
 .icon {
   height: 20px;
+  margin-left: 10px;
   margin-right: 10px;
   width: 20px;
 }

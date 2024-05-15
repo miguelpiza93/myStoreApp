@@ -14,7 +14,7 @@ const SidebarItem = ({ icon, label, rightBadge, className, onClick }) => {
 
   return (
     <div className={cn(styles.sidebarItem, className)} onClick={onClick}>
-      {iconObject && <FontAwesomeIcon icon={iconObject} />}
+      {iconObject && <FontAwesomeIcon icon={iconObject} className={styles.icon}/>}
       <span className={styles.text}>{label}</span>
       {rightBadge}
     </div>

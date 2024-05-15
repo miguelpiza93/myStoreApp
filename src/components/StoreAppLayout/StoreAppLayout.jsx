@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 import { Outlet } from 'react-router-dom';
 import Sidebar from "../Sidebar/Sidebar";
-import "./StoreAppLayout.css";
+import "./StoreAppLayout.scss";
 
 
 const StoreAppLayout = ( ) => {
   return (
     <div id="container">
+      <Sidebar />
       <div id="body">
-        <Sidebar />
         <main><Outlet /></main>
       </div>
     </div>
