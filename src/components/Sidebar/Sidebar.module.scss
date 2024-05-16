@@ -1,8 +1,12 @@
 .sidebar {
-  grid-column: 1;
   min-height: calc(100vh - (12px + 12px));
   background-color: #f4f4f4;
   border: 1px solid #ccc;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
+  max-width: 50px;
+  @media (min-width: 768px) {
+    grid-column: 1;
+    max-width: none;
+  }
 }

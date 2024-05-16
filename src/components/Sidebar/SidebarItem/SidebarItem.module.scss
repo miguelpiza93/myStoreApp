@@ -4,7 +4,7 @@
   color: #353535;
   display: flex;
   height: 30px;
-  margin: 15px 25px 15px 25px;
+  margin: 15px 5px 15px 5px;
   width: auto;
   outline: none;
 
@@ -12,11 +12,18 @@
     background-color: #e7e8f1;
     color: #062a67;
   }
+  @media (min-width: 768px) {
+    margin: 15px 25px 15px 25px;
+  }
 }
 
 .text {
   font-size: 15px;
   line-height: 1;
+  display: none;
+  @media (min-width: 768px) {
+    display: inline;
+  }
 }
 
 .icon {
