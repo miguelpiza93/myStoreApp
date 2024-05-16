@@ -1,30 +1,25 @@
-import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import SupplierRow from "./SupplierRow";
 import styles from "./SupplierTable.module.css";
-import { useSelector } from 'react-redux'
-import { getSuppliers } from "../../../../redux/supplier/actions/getSupplier.action";
-import { useEffect } from "react";
-import { selectSuppliers } from "../../../../redux/supplier/supplier.selectors";
+import { useGetSuppliersQuery } from "../../../../api/supplier/supplierApi";
 
-const mapStateToProps = (state) => {
-  return {
-    suppliers: state.suppliers,
+
+const SupplierTable = () => {
+  const navigate = useNavigate();
+  const handleRedirectToDetail = (id) => {
+    navigate(`/suppliers/${id}`);
   };
-};
+  const { data: suppliers, error, isLoading } = useGetSuppliersQuery();
 
 
-
-const SupplierTable = ({dispatch}) => {
-  const suppliers = useSelector(selectSuppliers);
+  if (isLoading) return <div>Loading...</div>
+  if (!suppliers) return <div>Missing suppliers!</div>
+  if (error) return <div>Error getting suppliers!</div>
 
   const onRemove = id => {
     //dispatch(deleteProduct(id));
     console.log("to implement");
   }
-
-  useEffect(()=>{
-    dispatch(getSuppliers());
-  }, [dispatch])
 
   return (
     <div>
@@ -37,7 +32,7 @@ const SupplierTable = ({dispatch}) => {
         </thead>
         <tbody>
           {suppliers.map((supplier) => (
-            <SupplierRow key={supplier.id} item={supplier} onRemove={onRemove}/>
+            <SupplierRow key={supplier.id} item={supplier} onRemove={onRemove} onClick={() => handleRedirectToDetail(supplier.id)} />
           ))}
         </tbody>
       </table>
@@ -45,4 +40,4 @@ const SupplierTable = ({dispatch}) => {
   );
 };
 
-export default connect(mapStateToProps)(SupplierTable);
+export default SupplierTable;

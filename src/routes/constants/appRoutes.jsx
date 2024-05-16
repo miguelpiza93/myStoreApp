@@ -1,7 +1,6 @@
-import AddProduct from "../../components/Product/AddProduct"
-import ProductList from "../../components/Product/ProductList";
-import SupplierList from "../../components/Suppliers/SupplierList";
-import AddSupplier from "../../components/Suppliers/AddSupplier";
+import { AddProduct, ProductList } from "../../components/Product";
+import { SupplierList, Supplier } from "../../components/Suppliers";
+
 
 
 export const getAppRoutes = () => [
@@ -34,7 +33,14 @@ export const getAppRoutes = () => [
     href: '/suppliers/create',
     rightBadge: undefined,
     childRoutes: [],
-    componentToDisplay: AddSupplier,
+    componentToDisplay: Supplier,
+    hidden: true
+  },
+  {
+    href: '/suppliers/:supplierId',
+    rightBadge: undefined,
+    childRoutes: [],
+    componentToDisplay: Supplier,
     hidden: true
   }
 ]
