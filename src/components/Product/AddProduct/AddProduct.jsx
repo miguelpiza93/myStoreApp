@@ -19,7 +19,7 @@ const AddProduct = ({ dispatch }) => {
     const onAddProductClick = async () => {
         await dispatch(createProduct({ ...state }));
         setState(INITIAL_STATE);
-        navigate("/");
+        navigate("/products");
     };
 
     const handleInputChange = (event) => {

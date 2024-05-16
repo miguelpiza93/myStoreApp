@@ -5,7 +5,6 @@ const SupplierRow = ({ item, onRemove }) => {
   return (
     <tr>
       <td>{item.name}</td>
-      <td>{item.description}</td>
       <td>
         <button onClick={() => onRemove(item.id)}>
         <FontAwesomeIcon icon={faTrash} />

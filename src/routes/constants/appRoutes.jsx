@@ -1,6 +1,8 @@
 import AddProduct from "../../components/Product/AddProduct"
 import ProductList from "../../components/Product/ProductList";
 import SupplierList from "../../components/Suppliers/SupplierList";
+import AddSupplier from "../../components/Suppliers/AddSupplier";
+
 
 export const getAppRoutes = () => [
   {
@@ -22,12 +24,17 @@ export const getAppRoutes = () => [
     hidden: false
   },
   {
-    icon: 'HomeIcon',
-    label: 'Create',
     href: '/products/create',
     rightBadge: undefined,
     childRoutes: [],
     componentToDisplay: AddProduct,
+    hidden: true
+  },
+  {
+    href: '/suppliers/create',
+    rightBadge: undefined,
+    childRoutes: [],
+    componentToDisplay: AddSupplier,
     hidden: true
   }
 ]

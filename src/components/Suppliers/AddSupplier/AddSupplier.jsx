@@ -1,8 +1,8 @@
 import { useReducer } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import style from "./AddProduct.module.css";
-import { createProduct } from "../../../redux/product/actions/createProduct.action";
+import style from "./AddSupplier.module.css";
+import { createSupplier } from "../../../redux/supplier/actions/createSupplier.action";
 
 const INITIAL_STATE = {
     description: "",
@@ -16,10 +16,10 @@ const AddSupplier = ({ dispatch }) => {
     const [state, setState] = useReducer(reducer, INITIAL_STATE);
     const navigate = useNavigate();
 
-    const onAddProductClick = async () => {
-        await dispatch(createProduct({ ...state }));
+    const onAddSupplierClick = async () => {
+        await dispatch(createSupplier({ ...state }));
         setState(INITIAL_STATE);
-        navigate("/");
+        navigate("/suppliers");
     };
 
     const handleInputChange = (event) => {
@@ -29,32 +29,21 @@ const AddSupplier = ({ dispatch }) => {
 
     return (
         <div className={style.form}>
-            <h1>Agregar Producto</h1>
+            <h1>Agregar Proveedor</h1>
             <div>
-                <label htmlFor="name">Nombre:</label>
+                <label htmlFor="supplier_name">Nombre:</label>
                 <input
+                    id="supplier_name"
                     type="text"
                     name="name"
+                    autoComplete="off"
                     value={state.name}
                     onChange={handleInputChange}
                     required
-                    aria-labelledby="name"
+                    aria-labelledby="supplier_name"
                 />
             </div>
-
-            <div>
-                <label htmlFor="description">Description:</label>
-                <input
-                    type="text"
-                    name="description"
-                    value={state.description}
-                    onChange={handleInputChange}
-                    required
-                    aria-labelledby="description"
-                />
-            </div>
-
-            <button onClick={onAddProductClick} aria-labelledby="submit">
+            <button onClick={onAddSupplierClick} aria-labelledby="submit">
                 Submit
             </button>
         </div>
