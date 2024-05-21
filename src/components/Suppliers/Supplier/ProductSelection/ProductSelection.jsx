@@ -16,7 +16,7 @@ const ProductSelection = ({ products, selectedProducts, onCheckboxChange, onPric
                                 type="checkbox"
                                 id={`checkbox_${product.id}`}
                                 name={product.name}
-                                checked={selectedProducts.hasOwnProperty(product.id)}
+                                checked={selectedProducts.some(selectedProduct=> selectedProduct?.id === product.id)}
                                 onChange={(e) => onCheckboxChange(e, product.id)}
                             />
                         </td>
@@ -26,8 +26,8 @@ const ProductSelection = ({ products, selectedProducts, onCheckboxChange, onPric
                                 id={`price_${product.id}`}
                                 type="number"
                                 onChange={(e) => onPriceChange(e, product.id)}
-                                disabled={!selectedProducts.hasOwnProperty(product.id)}
-                                value={selectedProducts[product.id] || ''}
+                                disabled={!selectedProducts.some(selectedProduct=> selectedProduct?.id === product.id)}
+                                value={selectedProducts.find(selectedProduct=> selectedProduct?.id === product.id)?.price || ''}
                             />
                         </td>
                     </tr>
