@@ -17,7 +17,6 @@ const SupplierTable = () => {
   if (error) return <div>Error getting suppliers!</div>
 
   const onRemove = id => {
-    //dispatch(deleteProduct(id));
     console.log("to implement");
   }
 
@@ -32,7 +31,7 @@ const SupplierTable = () => {
         </thead>
         <tbody>
           {suppliers.map((supplier) => (
-            <SupplierRow key={supplier.id} item={supplier} onRemove={onRemove} onClick={() => handleRedirectToDetail(supplier.id)} />
+            <SupplierRow key={supplier.id} item={supplier} onRemove={onRemove} onDetail={handleRedirectToDetail} />
           ))}
         </tbody>
       </table>

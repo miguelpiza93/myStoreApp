@@ -1,10 +1,11 @@
-import { useReducer, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useCallback, useReducer, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import style from "./Supplier.module.scss";
-import { useAddSupplierMutation, useAddProductToSupplierMutation } from "../../../api/supplier/supplierApi";
-import SupplierForm from "./SupplierForm";
-import ProductSelection from "./ProductSelection";
+import { useGetSupplierQuery, useAddProductToSupplierMutation, useUpdateSupplierMutation } from "../../../api/supplier/supplierApi";
+import SupplierForm from "../Supplier/SupplierForm";
+import ProductSelection from "../Supplier/ProductSelection";
 import { useGetProductsQuery } from "../../../api/product/productApi";
+
 
 const INITIAL_STATE = {
     name: "",
@@ -40,8 +41,6 @@ const reducer = (state, action) => {
             return handlePriceChange(state, action.productId, action.value);
         case 'TOGGLE_PRODUCT':
             return handleProductSelection(state, action.product, action.checked);
-        case 'RESET':
-            return INITIAL_STATE;
         case 'SET_INITIAL_STATE':
             return action.state;
         default:
@@ -49,16 +48,25 @@ const reducer = (state, action) => {
     }
 };
 
-const Supplier = () => {
-    const [state, dispatchState] = useReducer(reducer, INITIAL_STATE);
+const EditSupplier = () => {
     const navigate = useNavigate();
+    const { supplierId } = useParams();
     const { data: availableProducts, error, isLoading } = useGetProductsQuery();
-    const [addSupplier, { isLoadingCreation }] = useAddSupplierMutation();
+    const { data: originalSupplier, supplierError, isLoadingSupplier } = useGetSupplierQuery(supplierId);
     const [addProductToSupplier] = useAddProductToSupplierMutation();
+    const [updateSupplier] = useUpdateSupplierMutation();
 
-    const onAddSupplierClick = async () => {
+    const [state, dispatchState] = useReducer(reducer, INITIAL_STATE);
+
+    useEffect(() => {
+        if (originalSupplier) {
+            dispatchState({ type: 'SET_INITIAL_STATE', state: originalSupplier });
+        }
+    }, [originalSupplier]);
+
+    const onSaveSupplierClick = () => {
         try {
-            addSupplier({ name: state.name })
+            updateSupplier({ id: supplierId, name: state.name })
                 .then((response) => {
                     const supplierId = response.data.id;
                     const products = Object.fromEntries(
@@ -90,13 +98,16 @@ const Supplier = () => {
         dispatchState({ type: 'SET_PRICE', productId, value });
     }, []);
 
-    if (isLoading) return <div>Loading...</div>
+    if (isLoadingSupplier || isLoading) return <div>Loading...</div>
+    if (!originalSupplier) return <div>Missing supplier!</div>
+    if (supplierError) return <div>Error getting supplier!</div>
+
     if (!availableProducts) return <div>Missing availableProducts!</div>
     if (error) return <div>Error getting available products!</div>
 
     return (
         <div className={style.form}>
-            <h1>{"Agregar Proveedor"}</h1>
+            <h1>{"Editar Proveedor"}</h1>
             <SupplierForm name={state.name} onInputChange={handleInputChange} />
             <ProductSelection
                 products={availableProducts}
@@ -104,10 +115,10 @@ const Supplier = () => {
                 onCheckboxChange={handleCheckboxChange}
                 onPriceChange={handlePriceChange}
             />
-            <button disabled={isLoadingCreation} onClick={onAddSupplierClick} aria-labelledby="submit">
-                {"Submit"}
+            <button disabled={isLoading} onClick={onSaveSupplierClick} aria-labelledby="submit">
+                {"Save"}
             </button>
         </div>
     );
 }
-export default Supplier;
+export default EditSupplier;
