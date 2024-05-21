@@ -1,30 +1,15 @@
-import { connect } from "react-redux";
 import ProductRow from "./ProductRow";
 import styles from "./ProductTable.module.css";
-import { useSelector } from 'react-redux'
-import { getProducts } from "../../../../redux/product/actions/getProduct.action";
-import { useEffect } from "react";
-import { selectProducts } from "../../../../redux/product/product.selectors";
-
-const mapStateToProps = (state) => {
-  return {
-    products: state.products,
-  };
-};
+import { useGetProductsQuery, useDeleteProductMutation } from "../../../../api/product/productApi";
 
 
+const ProductTable = () => {
+  const { data: products, error, isLoading } = useGetProductsQuery();
+  const [removeProduct] = useDeleteProductMutation();
 
-const ProductTable = ({dispatch}) => {
-  const products = useSelector(selectProducts);
-
-  const onRemove = id => {
-    //dispatch(deleteProduct(id));
-    console.log("to implement");
-  }
-
-  useEffect(()=>{
-    dispatch(getProducts());
-  }, [dispatch])
+  if (isLoading) return <div>Loading...</div>
+  if (!products) return <div>Missing products!</div>
+  if (error) return <div>Error getting products!</div>
 
   return (
     <div>
@@ -38,7 +23,7 @@ const ProductTable = ({dispatch}) => {
         </thead>
         <tbody>
           {products.map((product) => (
-            <ProductRow key={product.id} item={product} onRemove={onRemove}></ProductRow>
+            <ProductRow key={product.name} item={product} onRemove={() => removeProduct(product.id)}></ProductRow>
           ))}
         </tbody>
       </table>
@@ -46,4 +31,4 @@ const ProductTable = ({dispatch}) => {
   );
 };
 
-export default connect(mapStateToProps)(ProductTable);
+export default ProductTable;

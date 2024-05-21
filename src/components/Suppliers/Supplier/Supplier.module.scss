@@ -7,7 +7,9 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    width: 400px;
+    @media (min-width: 400px) {
+      width: 400px;
+    }
   }
   
   /* Style form elements (label and input/select) */
@@ -40,3 +42,19 @@
     background-color: #0056b3;
   }
   
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.option{
+  display: flex;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.option label {
+  margin-left: 10px;
+}

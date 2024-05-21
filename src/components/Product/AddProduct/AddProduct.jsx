@@ -1,30 +1,31 @@
-import { useReducer } from "react";
-import { connect } from "react-redux";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "./AddProduct.module.css";
-import { createProduct } from "../../../redux/product/actions/createProduct.action";
+import { useAddProductMutation } from "../../../api/product/productApi";
+//import { addNewProduct } from "../../../store/products/slice";
 
-const INITIAL_STATE = {
+const INITIAL_VALUE = {
     description: "",
     name: "",
 };
 
-const reducer = (state, payload) => ({ ...state, ...payload });
-
-const AddProduct = ({ dispatch }) => {
-
-    const [state, setState] = useReducer(reducer, INITIAL_STATE);
+const AddProduct = () => {
+    const [product, setProduct] = useState(INITIAL_VALUE)
     const navigate = useNavigate();
+    const [addProduct, { isLoading }] = useAddProductMutation()
 
-    const onAddProductClick = async () => {
-        await dispatch(createProduct({ ...state }));
-        setState(INITIAL_STATE);
-        navigate("/products");
+    const onAddProductClick = () => {
+        addProduct({ ...product })
+        .then(()=>{
+            //dispatch(addNewProduct({...product}))
+            //setProduct(INITIAL_VALUE);
+            navigate("/products");
+        });
     };
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        setState({ [name]: value });
+        setProduct({ ...product, [name]: value });
     };
 
     return (
@@ -37,7 +38,7 @@ const AddProduct = ({ dispatch }) => {
                     type="text"
                     name="name"
                     autoComplete="off"
-                    value={state.name}
+                    value={product.name}
                     onChange={handleInputChange}
                     required
                     aria-labelledby="product_name" />
@@ -51,18 +52,18 @@ const AddProduct = ({ dispatch }) => {
                     type="text"
                     name="description"
                     autoComplete="off"
-                    value={state.description}
+                    value={product.description}
                     onChange={handleInputChange}
                     required
                     aria-labelledby="product_description"
                 />
             </div>
 
-            <button onClick={onAddProductClick} aria-labelledby="submit">
+            <button disabled={isLoading} onClick={onAddProductClick} aria-labelledby="submit">
                 Submit
             </button>
         </div>
     );
 }
 
-export default connect()(AddProduct);
+export default AddProduct;
