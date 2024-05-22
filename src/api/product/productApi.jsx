@@ -26,13 +26,13 @@ export const productApi = createApi({
         }),
         deleteProduct: builder.mutation({
             query(id) {
-              return {
-                url: `api/v1/products/${id}`,
-                method: 'DELETE',
-              }
+                return {
+                    url: `api/v1/products/${id}`,
+                    method: 'DELETE',
+                }
             },
             invalidatesTags: (result, error, id) => [{ type: 'Product', id }],
-          }),
+        }),
     }),
 })
 

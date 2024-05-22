@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import SupplierRow from "./SupplierRow";
 import styles from "./SupplierTable.module.css";
-import { useGetSuppliersQuery } from "../../../../api/supplier/supplierApi";
+import { useGetSuppliersQuery, useDeleteSupplierMutation } from "../../../../api/supplier/supplierApi";
 
 
 const SupplierTable = () => {
@@ -10,6 +10,7 @@ const SupplierTable = () => {
     navigate(`/suppliers/${id}`);
   };
   const { data: suppliers, error, isLoading } = useGetSuppliersQuery();
+  const [removeSupplier] = useDeleteSupplierMutation();
 
 
   if (isLoading) return <div>Loading...</div>
@@ -17,7 +18,14 @@ const SupplierTable = () => {
   if (error) return <div>Error getting suppliers!</div>
 
   const onRemove = id => {
-    console.log("to implement");
+    try {
+      removeSupplier(id)
+        .then(() => {
+          navigate("/suppliers")
+        })
+    } catch (error) {
+      console.error('Error removing supplier', error);
+    }
   }
 
   return (
