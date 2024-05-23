@@ -1,6 +1,6 @@
 import { useState } from "react";
 import SupplierSelection from "../SupplierSelection"
-import SupplierProductSelection from "../SupplierProductSelection"
+import { SupplierProductSelection, SupplierProductSelectionSkeleton } from "../SupplierProductSelection"
 
 const SelectingSection = ({ onAdd }) => {
 
@@ -27,25 +27,25 @@ const SelectingSection = ({ onAdd }) => {
     return (
         <div>
             <SupplierSelection onChange={setSelectedSupplier} />
-            {selectedSupplier && <SupplierProductSelection supplierId={selectedSupplier.id} onChange={setSelectedProduct} />}
-            {selectedProduct &&
-                <>
-                    <div>
-                        <label htmlFor="quantity">Cantidad:</label>
-                        <input
-                            id="quantity"
-                            type="number"
-                            name="quantity"
-                            value={quantity}
-                            onChange={handleQuantityChange}
-                            required
-                            aria-labelledby="quantity" />
-                    </div>
-                    <button disabled={quantity <= 0} onClick={handleAddProduct}>
-                        Add
-                    </button>
-                </>
+            {!selectedSupplier ?
+                <SupplierProductSelectionSkeleton />
+                : <SupplierProductSelection supplierId={selectedSupplier?.id} onChange={setSelectedProduct} />
             }
+            <div>
+                <label htmlFor="quantity">Cantidad:</label>
+                <input
+                    id="quantity"
+                    type="number"
+                    name="quantity"
+                    value={quantity}
+                    onChange={handleQuantityChange}
+                    required
+                    aria-labelledby="quantity"
+                    disabled={!selectedProduct} />
+            </div>
+            <button disabled={quantity <= 0} onClick={handleAddProduct}>
+                Add
+            </button>
         </div>
     )
 }
