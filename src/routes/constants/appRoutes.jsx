@@ -1,6 +1,6 @@
 import { AddProduct, ProductList } from "../../components/Product";
 import { SupplierList, Supplier } from "../../components/Suppliers";
-import EditSupplier from "../../components/Suppliers/EditSupplier/EditSupplier";
+import EditSupplier from "../../components/Suppliers/EditSupplier";
 
 
 

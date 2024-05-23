@@ -3,9 +3,10 @@ import { useGetProductsQuery } from '../../../api/product/productApi';
 import SupplierForm from './SupplierForm';
 import ProductSelection from './ProductSelection';
 import { reducer, INITIAL_STATE } from '../../../reducers/suppliers/supplier.reducer';
+import style from "./SupplierFormContainer.module.scss";
 
-const SupplierFormContainer = ({ initialData, onSave }) => {
-    const [state, dispatchState] = useReducer(reducer, initialData || INITIAL_STATE);
+const SupplierFormContainer = ({ initialData = INITIAL_STATE, onSave }) => {
+    const [state, dispatchState] = useReducer(reducer, initialData);
     const { data: availableProducts, error, isLoading } = useGetProductsQuery();
 
     const handleInputChange = useCallback((event) => {
@@ -36,7 +37,7 @@ const SupplierFormContainer = ({ initialData, onSave }) => {
     if (error) return <div>Error getting available products!</div>;
 
     return (
-        <div>
+        <div className={style.form}>
             <SupplierForm name={state.name} onInputChange={handleInputChange} />
             <ProductSelection
                 products={availableProducts}
@@ -45,7 +46,7 @@ const SupplierFormContainer = ({ initialData, onSave }) => {
                 onPriceChange={handlePriceChange}
             />
             <button disabled={isLoading} onClick={handleSubmit} aria-labelledby="submit">
-                {"Submit"}
+                Save
             </button>
         </div>
     );

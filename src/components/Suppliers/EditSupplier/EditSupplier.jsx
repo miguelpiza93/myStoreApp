@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGetSupplierQuery, useAddProductToSupplierMutation, useUpdateSupplierMutation } from '../../../api/supplier/supplierApi';
-import SupplierFormContainer from '../SupplierFormContainer/SupplierFormContainer';
+import SupplierFormContainer from '../SupplierFormContainer';
 import style from "./Supplier.module.scss";
 
 const EditSupplier = () => {
