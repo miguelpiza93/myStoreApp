@@ -8,10 +8,16 @@ const SupplierSelection = ({ onChange }) => {
     if (!suppliers) return <div>Missing suppliers!</div>
     if (error) return <div>Error getting suppliers!</div>
 
+    const onChangeSelection = (e) => {
+        const { value } = e.target;
+        const selected = suppliers.find(supplier => supplier.id === parseInt(value));
+        onChange(selected);
+    }
+
     return (
         <div>
             <label htmlFor="supplier-select">Supplier:</label>
-            <select name="suppliers" id="supplier-select" onChange={onChange}>
+            <select name="suppliers" id="supplier-select" onChange={onChangeSelection}>
                 <option value="">Select an option</option>
                 {suppliers.map(supplier => {
                     return <option key={supplier.id} value={supplier.id}>{supplier.name}</option>
@@ -28,10 +34,16 @@ const SupplierProductSelection = ({ supplierId, onChange }) => {
     if (!supplier) return <div>Missing supplier!</div>
     if (error) return <div>Error getting supplier!</div>
 
+    const handleProductSelection = (e) => {
+        const { value } = e.target;
+        const selected = supplier.products.find(product => product.id === parseInt(value));
+        onChange(selected);
+    }
+
     return (
         <div>
             <label htmlFor="product-select">Product:</label>
-            <select name="products" id="product-select" onChange={onChange}>
+            <select name="products" id="product-select" onChange={handleProductSelection}>
                 <option value="">Select an option</option>
                 {supplier.products.map(product => {
                     return <option key={product.id} value={product.id}>{product.name}</option>
@@ -43,19 +55,9 @@ const SupplierProductSelection = ({ supplierId, onChange }) => {
 
 const SelectingSection = ({ onAdd }) => {
 
-    const [selectedSupplier, setSelectedSupplier] = useState('');
-    const [selectedProduct, setSelectedProduct] = useState('');
+    const [selectedSupplier, setSelectedSupplier] = useState();
+    const [selectedProduct, setSelectedProduct] = useState();
     const [quantity, setQuantity] = useState(0);
-
-    const handleSupplierSelection = (e) => {
-        const { value: id } = e.target;
-        setSelectedSupplier(id);
-    };
-
-    const handleProductSelection = (e) => {
-        const { value: id } = e.target;
-        setSelectedProduct(id);
-    };
 
     const handleQuantityChange = (e) => {
         const { value } = e.target;
@@ -63,19 +65,20 @@ const SelectingSection = ({ onAdd }) => {
     }
 
     const handleAddProduct = () => {
-        const productToAdd = {
-            supplierId: selectedSupplier,
-            productId: selectedProduct,
+        const productInfoToAdd = {
+            id: `${selectedSupplier.id}_${selectedProduct.id}`,
+            supplier: selectedSupplier,
+            product: selectedProduct,
             quantity
         }
-        onAdd(productToAdd);
+        onAdd(productInfoToAdd);
         setQuantity(0);
     }
 
     return (
         <div>
-            <SupplierSelection onChange={handleSupplierSelection} />
-            {selectedSupplier && <SupplierProductSelection supplierId={selectedSupplier} onChange={handleProductSelection} />}
+            <SupplierSelection onChange={setSelectedSupplier} />
+            {selectedSupplier && <SupplierProductSelection supplierId={selectedSupplier.id} onChange={setSelectedProduct} />}
             {selectedProduct &&
                 <>
                     <div>
@@ -98,15 +101,23 @@ const SelectingSection = ({ onAdd }) => {
     )
 }
 
-const SelectedProducts = ({ products }) => {
+const ProductCard = ({ item }) => {
+    return (
+        <div>
+            <div>{item.product.name}</div>
+            <div>{item.supplier.name}</div>
+            <div>{item.quantity}</div>
+        </div>
+    )
+}
+
+const SelectedProducts = ({ productInfoList }) => {
     return (
         <div>
             <h1>Selected products</h1>
-            {products.map(product => {
-                return (
-                    <strong key={product.id} >{product.quantity}</strong>
-                )
-            })}
+            {productInfoList.map(productInfo => (
+                <ProductCard key={productInfo.id} item={productInfo} />
+            ))}
         </div>
     )
 }
@@ -121,11 +132,18 @@ const Supplying = () => {
         )
     }
 
+    const handleSaveSupplying = () => {
+        console.log("in progress");
+    }
+
     return (
         <div>
             <h1>Supplying</h1>
             <SelectingSection onAdd={handleProductAdd} />
-            <SelectedProducts products={selectedProducts} />
+            <SelectedProducts productInfoList={selectedProducts} />
+            <button disabled={!selectedProducts} onClick={handleSaveSupplying}>
+                Save
+            </button>
         </div>
     )
 }
