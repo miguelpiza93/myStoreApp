@@ -1,6 +1,7 @@
 import { AddProduct, ProductList } from "../../components/Product";
 import { SupplierList, Supplier } from "../../components/Suppliers";
 import EditSupplier from "../../components/Suppliers/EditSupplier";
+import Supplying from "../../components/Supplying/Supplying";
 
 
 
@@ -43,7 +44,16 @@ export const getAppRoutes = () => [
     childRoutes: [],
     componentToDisplay: EditSupplier,
     hidden: true
-  }
+  },
+  {
+    icon: 'ProductIcon',
+    label: 'Supplying',
+    href: '/supplying',
+    rightBadge: undefined,
+    childRoutes: [],
+    componentToDisplay: Supplying,
+    hidden: false
+  },
 ]
 
 export const getAppSideBarRoutes = () => {

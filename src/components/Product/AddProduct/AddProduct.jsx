@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "./AddProduct.module.css";
 import { useAddProductMutation } from "../../../api/product/productApi";
-//import { addNewProduct } from "../../../store/products/slice";
 
 const INITIAL_VALUE = {
     description: "",
