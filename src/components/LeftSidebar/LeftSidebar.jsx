@@ -1,38 +1,47 @@
 import cn from 'classnames';
 import styles from "./LeftSidebar.module.scss";
-import SidebarLink from "./SidebarLink"
-import { getAppSideBarRoutes } from '../../routes/constants/appRoutes'
-import { useState, useEffect } from 'react';
+import SidebarLink from "./SidebarLink";
+import { getAppSideBarRoutes } from '../../routes/constants/appRoutes';
+import { useState, useEffect, useCallback } from 'react';
+
+const MODES = {
+  FIXED: "FIXED",
+  COLLAPSABLE: "COLLAPSABLE"
+};
 
 const Sidebar = ({ className }) => {
   const routes = getAppSideBarRoutes();
 
-  const [isOpen, setIsOpen] = useState(false);
-  const [mode, setMode] = useState("FIXED");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [sidebarMode, setSidebarMode] = useState(MODES.FIXED);
+
+  const updateSidebarMode = useCallback(() => {
+    setSidebarMode(window.innerWidth >= 800 ? MODES.FIXED : MODES.COLLAPSABLE);
+  }, []);
 
   useEffect(() => {
-    if (mode === "FIXED") {
-      setIsOpen(false);
+    if (sidebarMode === MODES.FIXED) {
+      setIsSidebarOpen(false);
     }
-  }, [mode]);
+  }, [sidebarMode]);
 
   useEffect(() => {
-    const handleResize = () => {
-      setMode(window.innerWidth >= 800 ? "FIXED" : "COLLAPSABLE");
-    };
-
-    window.addEventListener('resize', handleResize);
-    handleResize();
+    window.addEventListener('resize', updateSidebarMode);
+    updateSidebarMode();
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', updateSidebarMode);
     };
-  }, []);
+  }, [updateSidebarMode]);
 
   return (
     <aside className={cn(className, styles.sidebar)}>
-      {mode === "COLLAPSABLE" && <button onClick={() => setIsOpen(!isOpen)}>{isOpen ? "Close" : "Open"}</button>}
-      {(isOpen || mode === "FIXED") && routes.map(routeProps => (
+      {sidebarMode === MODES.COLLAPSABLE && (
+        <button onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+          {isSidebarOpen ? "Close" : "Open"}
+        </button>
+      )}
+      {(isSidebarOpen || sidebarMode === MODES.FIXED) && routes.map(routeProps => (
         <SidebarLink className={styles.sideBarLink} key={routeProps.label} {...routeProps} />
       ))}
     </aside>
