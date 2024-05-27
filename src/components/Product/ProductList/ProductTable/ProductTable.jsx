@@ -1,7 +1,5 @@
-import cn from 'classnames';
-import ProductRow from "./ProductRow";
 import { useGetProductsQuery, useDeleteProductMutation } from "../../../../api/product/productApi";
-import styles from "./ProductTable.module.scss"
+import Table from '../../../Table/Table';
 
 const ProductTable = ({ className }) => {
   const { data: products, error, isLoading } = useGetProductsQuery();
@@ -12,20 +10,24 @@ const ProductTable = ({ className }) => {
   if (error) return <div>Error getting products!</div>
 
   return (
-    <table className={cn(className, styles.table)}>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((product) => (
-            <ProductRow key={product.name} item={product} onRemove={() => removeProduct(product.id)}></ProductRow>
-          ))}
-        </tbody>
-      </table>
+    <Table
+      className={className}
+      columns={
+        [
+          'Name',
+          'Description'
+        ]
+      }
+      data={
+        products.map(product => {
+          return {
+            id: product.id,
+            name: product.name
+          }
+        })
+      }
+      onDelete={(item)=> removeProduct(item.id)} 
+    />
   );
 };
 

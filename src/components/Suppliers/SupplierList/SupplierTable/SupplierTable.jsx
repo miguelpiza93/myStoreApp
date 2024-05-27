@@ -1,8 +1,6 @@
-import cn from 'classnames';
 import { useNavigate } from "react-router-dom";
-import SupplierRow from "./SupplierRow";
 import { useGetSuppliersQuery, useDeleteSupplierMutation } from "../../../../api/supplier/supplierApi";
-import styles from "./SupplierTable.module.scss"
+import Table from '../../../Table/Table';
 
 const SupplierTable = ({ className }) => {
   const navigate = useNavigate();
@@ -29,19 +27,24 @@ const SupplierTable = ({ className }) => {
   }
 
   return (
-    <table className={cn(className, styles.table)}>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        {suppliers.map((supplier) => (
-          <SupplierRow key={supplier.id} item={supplier} onRemove={onRemove} onDetail={handleRedirectToDetail} />
-        ))}
-      </tbody>
-    </table>
+    <Table
+      className={className}
+      columns={
+        [
+          'Name',
+        ]
+      }
+      data={
+        suppliers.map(supplier => {
+          return {
+            id: supplier.id,
+            name: supplier.name
+          }
+        })
+      }
+      onDelete={(item)=> onRemove(item.id)} 
+      onDetail={(item)=> handleRedirectToDetail(item.id)}
+    />
   );
 };
 
