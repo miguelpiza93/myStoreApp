@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import style from "./AddProduct.module.css";
 import { useAddProductMutation } from "../../../api/product/productApi";
 
 const INITIAL_VALUE = {
@@ -28,7 +27,7 @@ const AddProduct = () => {
     };
 
     return (
-        <div className={style.form}>
+        <div>
             <h1>Agregar Producto</h1>
             <div>
                 <label htmlFor="product_name">Nombre:</label>

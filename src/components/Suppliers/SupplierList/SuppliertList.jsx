@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import SupplierTable from "./SupplierTable";
+import styles from "./SupplierList.module.scss"
 
 const SupplierList = () => {
   const navigate = useNavigate();
@@ -7,12 +8,13 @@ const SupplierList = () => {
     navigate("/suppliers/create");
   };
   return (
-    <div>
-      <h1>Listado de proveedores</h1>
-      <button onClick={handleRedirectToAddProduct} aria-label="Add Supplier">
-        Add Supplier
-      </button>
-      <SupplierTable/>
+    <div className={styles.wrapper} >
+      <div className={styles.options}>
+        <button onClick={handleRedirectToAddProduct} aria-label="Add Supplier">
+          Add Supplier
+        </button>
+      </div>
+      <SupplierTable className={styles.table} />
     </div>
   );
 };

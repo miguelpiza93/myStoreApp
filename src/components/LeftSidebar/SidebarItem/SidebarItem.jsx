@@ -1,8 +1,7 @@
-import cn from 'classnames';
 import PropTypes from 'prop-types';
-import styles from './SidebarItem.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBoxesStacked, faCartFlatbed, faHome } from '@fortawesome/free-solid-svg-icons';
+import styles from "./SidebarItem.module.scss";
 
 const iconMap = {
   SupplierIcon: faCartFlatbed,
@@ -14,9 +13,9 @@ const SidebarItem = ({ icon, label, rightBadge, className, onClick }) => {
   const iconObject = iconMap[icon];
 
   return (
-    <div className={cn(styles.sidebarItem, className)} onClick={onClick}>
-      {iconObject && <FontAwesomeIcon icon={iconObject} className={styles.icon}/>}
-      <span className={styles.text}>{label}</span>
+    <div className={styles.wrapper} onClick={onClick}>
+      {iconObject && <FontAwesomeIcon icon={iconObject} />}
+      <span>{label}</span>
       {rightBadge}
     </div>
   );

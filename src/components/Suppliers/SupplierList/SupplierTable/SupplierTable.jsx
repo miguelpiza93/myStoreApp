@@ -1,10 +1,10 @@
+import cn from 'classnames';
 import { useNavigate } from "react-router-dom";
 import SupplierRow from "./SupplierRow";
-import styles from "./SupplierTable.module.css";
 import { useGetSuppliersQuery, useDeleteSupplierMutation } from "../../../../api/supplier/supplierApi";
+import styles from "./SupplierTable.module.scss"
 
-
-const SupplierTable = () => {
+const SupplierTable = ({ className }) => {
   const navigate = useNavigate();
   const handleRedirectToDetail = (id) => {
     navigate(`/suppliers/${id}`);
@@ -29,21 +29,19 @@ const SupplierTable = () => {
   }
 
   return (
-    <div>
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {suppliers.map((supplier) => (
-            <SupplierRow key={supplier.id} item={supplier} onRemove={onRemove} onDetail={handleRedirectToDetail} />
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <table className={cn(className, styles.table)}>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {suppliers.map((supplier) => (
+          <SupplierRow key={supplier.id} item={supplier} onRemove={onRemove} onDetail={handleRedirectToDetail} />
+        ))}
+      </tbody>
+    </table>
   );
 };
 

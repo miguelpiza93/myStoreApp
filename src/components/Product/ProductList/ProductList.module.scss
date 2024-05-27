@@ -1,0 +1,17 @@
+.wrapper {
+    padding: 25px 15px 25px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 470px;
+}
+
+.options {
+    display: flex;
+    flex-direction: row-reverse;
+    height: 35px;
+}
+
+.table {
+    height: 415px;
+}

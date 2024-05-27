@@ -1,9 +1,9 @@
+import cn from 'classnames';
 import ProductRow from "./ProductRow";
-import styles from "./ProductTable.module.css";
 import { useGetProductsQuery, useDeleteProductMutation } from "../../../../api/product/productApi";
+import styles from "./ProductTable.module.scss"
 
-
-const ProductTable = () => {
+const ProductTable = ({ className }) => {
   const { data: products, error, isLoading } = useGetProductsQuery();
   const [removeProduct] = useDeleteProductMutation();
 
@@ -12,8 +12,7 @@ const ProductTable = () => {
   if (error) return <div>Error getting products!</div>
 
   return (
-    <div>
-      <table className={styles.table}>
+    <table className={cn(className, styles.table)}>
         <thead>
           <tr>
             <th>Name</th>
@@ -27,7 +26,6 @@ const ProductTable = () => {
           ))}
         </tbody>
       </table>
-    </div>
   );
 };
 

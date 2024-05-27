@@ -1,0 +1,65 @@
+.appLayout {
+  display: flex;
+  flex-direction: column;
+  flex-flow: row wrap;
+  text-align: center;
+}
+
+.appLayout > * {
+  flex: 1 100%;
+  margin: 8px;
+}
+
+.appLayout > * button {
+  background-color: #007bff;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.appHeader {
+  height: 110px;
+}
+
+.appContent {
+  height: 520px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #0003;
+  background-color: #f4f4f4;
+}
+
+.appFooter {
+  height: 100px;
+}
+
+@media screen and (min-width: 600px) {
+  .sidebar{
+    flex: 1;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .appContent{
+    flex: 5;
+    order: 2;
+  }
+
+  .leftSide{
+    order: 1;
+  }
+
+  .rightSide{
+    order: 3;
+  }
+
+  .leftSide{
+    order: 1;
+  }
+
+  .appFooter{
+    order: 4;
+  }
+}

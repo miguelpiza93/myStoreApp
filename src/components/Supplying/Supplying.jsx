@@ -1,6 +1,7 @@
 import { useState } from "react";
 import SelectingSection from "./SelectingSection";
 import SelectedProducts from "./SelectedProducts";
+import styles from "./Supplying.module.scss"
 
 const Supplying = () => {
     const [selectedProducts, setSelectedProducts] = useState([]);
@@ -16,8 +17,7 @@ const Supplying = () => {
     }
 
     return (
-        <div>
-            <h1>Supplying</h1>
+        <div className={styles.wrapper}>
             <SelectingSection onAdd={handleProductAdd} />
             <SelectedProducts productInfoList={selectedProducts} />
             <button disabled={!selectedProducts} onClick={handleSaveSupplying}>
