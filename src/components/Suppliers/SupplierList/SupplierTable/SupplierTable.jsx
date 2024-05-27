@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useGetSuppliersQuery, useDeleteSupplierMutation } from "../../../../api/supplier/supplierApi";
-import Table from '../../../Table/Table';
+import Table from '../../../Table';
 
 const SupplierTable = ({ className }) => {
   const navigate = useNavigate();

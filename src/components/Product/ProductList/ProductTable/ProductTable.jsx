@@ -1,5 +1,5 @@
 import { useGetProductsQuery, useDeleteProductMutation } from "../../../../api/product/productApi";
-import Table from '../../../Table/Table';
+import Table from '../../../Table';
 
 const ProductTable = ({ className }) => {
   const { data: products, error, isLoading } = useGetProductsQuery();
