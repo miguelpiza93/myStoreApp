@@ -2,14 +2,14 @@
     outline: none;
     text-decoration: none;
 
-    &:visited {
-        color: inherit;
-        outline: none;
-        text-decoration: none;
-    }
-    
-    &:hover {
-        background-color: #e7e8f1;
+    &:visited,
+    &:focus,
+    &:hover,
+    &:active {
+      color: inherit;
+      outline: none;
+      text-decoration: none;
+      background-color: #e7e8f1;
     }
 }
 
