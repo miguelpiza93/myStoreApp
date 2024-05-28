@@ -1,8 +1,8 @@
 import { useCallback, useReducer } from 'react';
 import { useGetProductsQuery } from '../../../api/product/productApi';
-import SupplierForm from './SupplierForm';
 import ProductSelection from './ProductSelection';
 import { reducer, INITIAL_STATE } from '../../../reducers/suppliers/supplier.reducer';
+import Form from '../../Form/Form';
 
 const SupplierFormContainer = ({ initialData = INITIAL_STATE, onSave }) => {
     const [state, dispatchState] = useReducer(reducer, initialData);
@@ -37,7 +37,15 @@ const SupplierFormContainer = ({ initialData = INITIAL_STATE, onSave }) => {
 
     return (
         <div>
-            <SupplierForm name={state.name} onInputChange={handleInputChange} />
+            <Form
+                fields={[{
+                    name: 'name',
+                    type: 'text',
+                    placeholder: "Name"
+                }]}
+                data={{name: state.name}}
+                onFieldChange={handleInputChange}
+            />
             <ProductSelection
                 products={availableProducts}
                 selectedProducts={state.products}

@@ -21,11 +21,11 @@ const Form = ({ className, title, fields, data, onFieldChange, onSubmit }) => {
                 )
             })}
 
-            <button
+            {onSubmit && <button
                 onClick={onSubmit}
             >
                 Submit
-            </button>
+            </button>}
         </div>
     );
 };
