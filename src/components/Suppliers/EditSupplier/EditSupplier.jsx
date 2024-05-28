@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGetSupplierQuery, useAddProductToSupplierMutation, useUpdateSupplierMutation } from '../../../api/supplier/supplierApi';
 import SupplierFormContainer from '../SupplierFormContainer';
+import styles from "./EditSupplier.module.scss"
 
 const EditSupplier = () => {
     const navigate = useNavigate();
@@ -23,8 +24,8 @@ const EditSupplier = () => {
     if (error) return <div>Error getting supplier!</div>;
 
     return (
-        <div>
-            <h1>{"Editar Proveedor"}</h1>
+        <div className={styles.wrapper}>
+            <strong>{"Editar Proveedor"}</strong>
             <SupplierFormContainer initialData={originalSupplier} onSave={handleSave} />
         </div>
     );

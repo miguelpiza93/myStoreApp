@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useAddSupplierMutation, useAddProductToSupplierMutation } from '../../../api/supplier/supplierApi';
 import SupplierFormContainer from '../SupplierFormContainer';
+import styles from "./Supplier.module.scss"
 
 const Supplier = () => {
     const navigate = useNavigate();
@@ -18,7 +19,7 @@ const Supplier = () => {
     };
 
     return (
-        <div>
+        <div className={styles.wrapper}>
             <strong>{"Agregar Proveedor"}</strong>
             <SupplierFormContainer onSave={handleSave} />
         </div>
