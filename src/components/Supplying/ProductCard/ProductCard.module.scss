@@ -1,0 +1,19 @@
+.wrapper {
+    display: flex;
+    padding: 5px;
+}
+
+.wrapper>* {
+    flex: 1;
+}
+
+.wrapper:nth-child(even) {
+    background-color: #d6d6d6;
+}
+
+.info {
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}

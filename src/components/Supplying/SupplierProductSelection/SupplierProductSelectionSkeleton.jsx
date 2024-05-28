@@ -1,6 +1,6 @@
-const SupplierProductSelectionSkeleton = () => {
+const SupplierProductSelectionSkeleton = ({ className }) => {
     return (
-        <div>
+        <div className={className}>
             <label htmlFor="product-select">Product:</label>
             <select name="products" id="product-select" disabled>
                 <option value="">Select an option</option>

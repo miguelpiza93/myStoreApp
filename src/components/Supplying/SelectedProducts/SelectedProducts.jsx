@@ -1,9 +1,10 @@
 import ProductCard from "../ProductCard"
+import styles from "./SelectedProducts.module.scss"
 
 const SelectedProducts = ({ productInfoList }) => {
     return (
-        <div>
-            <h1>Selected products</h1>
+        <div className={styles.wrapper}>
+            <strong>Selected products</strong>
             {productInfoList.map(productInfo => (
                 <ProductCard key={productInfo.id} item={productInfo} />
             ))}

@@ -1,9 +1,13 @@
+import styles from "./ProductCard.module.scss"
+
 const ProductCard = ({ item }) => {
     return (
-        <div>
-            <div>{item.product.name}</div>
-            <div>{item.supplier.name}</div>
-            <div>{item.quantity}</div>
+        <div className={styles.wrapper}>
+            <div className={styles.info}>
+                <div>{item.product.name}</div>
+                <div>{item.supplier.name}</div>
+            </div>
+            <div className={styles.info}>{item.quantity}</div>
         </div>
     )
 }

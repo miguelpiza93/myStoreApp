@@ -1,8 +1,10 @@
+import cn from 'classnames';
 import { useState } from "react";
 import SupplierSelection from "../SupplierSelection"
 import { SupplierProductSelection, SupplierProductSelectionSkeleton } from "../SupplierProductSelection"
+import styles from "./SelectingSection.module.scss"
 
-const SelectingSection = ({ onAdd }) => {
+const SelectingSection = ({ className, onAdd }) => {
 
     const [selectedSupplier, setSelectedSupplier] = useState();
     const [selectedProduct, setSelectedProduct] = useState();
@@ -25,13 +27,13 @@ const SelectingSection = ({ onAdd }) => {
     }
 
     return (
-        <div>
-            <SupplierSelection onChange={setSelectedSupplier} />
+        <div className={cn(className, styles.wrapper)}>
+            <SupplierSelection className={styles.option} onChange={setSelectedSupplier} />
             {!selectedSupplier ?
-                <SupplierProductSelectionSkeleton />
-                : <SupplierProductSelection supplierId={selectedSupplier?.id} onChange={setSelectedProduct} />
+                <SupplierProductSelectionSkeleton className={styles.option} />
+                : <SupplierProductSelection className={styles.option} supplierId={selectedSupplier?.id} onChange={setSelectedProduct} />
             }
-            <div>
+            <div className={styles.option}>
                 <label htmlFor="quantity">Cantidad:</label>
                 <input
                     id="quantity"
@@ -43,9 +45,11 @@ const SelectingSection = ({ onAdd }) => {
                     aria-labelledby="quantity"
                     disabled={!selectedProduct} />
             </div>
-            <button disabled={quantity <= 0} onClick={handleAddProduct}>
-                Add
-            </button>
+            <div>
+                <button disabled={quantity <= 0} onClick={handleAddProduct}>
+                    Add
+                </button>
+            </div>
         </div>
     )
 }

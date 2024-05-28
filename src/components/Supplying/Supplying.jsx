@@ -18,11 +18,13 @@ const Supplying = () => {
 
     return (
         <div className={styles.wrapper}>
-            <SelectingSection onAdd={handleProductAdd} />
+            <SelectingSection className={styles.child} onAdd={handleProductAdd} />
             <SelectedProducts productInfoList={selectedProducts} />
-            <button disabled={!selectedProducts} onClick={handleSaveSupplying}>
-                Save
-            </button>
+            <div>
+                <button disabled={!selectedProducts} onClick={handleSaveSupplying}>
+                    Save
+                </button>
+            </div>
         </div>
     )
 }

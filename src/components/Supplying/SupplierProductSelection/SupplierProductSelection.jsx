@@ -1,6 +1,6 @@
 import { useGetSupplierQuery } from "../../../api/supplier/supplierApi";
 
-const SupplierProductSelection = ({ supplierId, onChange }) => {
+const SupplierProductSelection = ({ className, supplierId, onChange }) => {
     const { data: supplier, error, isLoading } = useGetSupplierQuery(supplierId);
 
     if (isLoading) return <div>Loading...</div>
@@ -14,7 +14,7 @@ const SupplierProductSelection = ({ supplierId, onChange }) => {
     }
 
     return (
-        <div>
+        <div className={className}>
             <label htmlFor="product-select">Product:</label>
             <select name="products" id="product-select" onChange={handleProductSelection}>
                 <option value="">Select an option</option>
