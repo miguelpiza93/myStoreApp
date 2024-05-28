@@ -3,14 +3,23 @@
     border-radius: 5px;
     box-shadow: 0 0 5px #0003;
     background-color: #f4f4f4;
-    padding-left: 15px;
-    padding-right: 15px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     row-gap: 15px;
-    padding-top: 25px;
-    padding-bottom: 25px;
+    padding: 10px 15px 10px 15px;
+}
+
+.collapseButtonContainer {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.collapseButtonContainer span {
+    background-color: #dddddd;
+    padding: 5px 10px;
+    border-radius: 2px;
+    border: 1px solid #ccc;
 }
 
 .sideBarLink {
@@ -18,4 +27,13 @@
     text-align: center;
     align-content: center;
     border-radius: 17.5px;
+}
+
+@media screen and (min-width: 800px) {
+    .sidebar {
+        padding-top: 25px;
+        padding-bottom: 25px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
 }

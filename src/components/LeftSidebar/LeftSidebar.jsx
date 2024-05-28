@@ -3,6 +3,9 @@ import styles from "./LeftSidebar.module.scss";
 import SidebarLink from "./SidebarLink";
 import { getAppSideBarRoutes } from '../../routes/constants/appRoutes';
 import { useState, useEffect, useCallback } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars, faClose } from '@fortawesome/free-solid-svg-icons';
+
 
 const MODES = {
   FIXED: "FIXED",
@@ -37,9 +40,11 @@ const Sidebar = ({ className }) => {
   return (
     <aside className={cn(className, styles.sidebar)}>
       {sidebarMode === MODES.COLLAPSABLE && (
-        <button onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
-          {isSidebarOpen ? "Close" : "Open"}
-        </button>
+        <div className={styles.collapseButtonContainer}>
+          <span onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+          {<FontAwesomeIcon icon={isSidebarOpen ? faClose : faBars} />}
+        </span>
+        </div>
       )}
       {(isSidebarOpen || sidebarMode === MODES.FIXED) && routes.map(routeProps => (
         <SidebarLink className={styles.sideBarLink} key={routeProps.label} {...routeProps} />
