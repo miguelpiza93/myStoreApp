@@ -19,7 +19,7 @@ const Supplier = () => {
 
     return (
         <div>
-            <h1>{"Agregar Proveedor"}</h1>
+            <strong>{"Agregar Proveedor"}</strong>
             <SupplierFormContainer onSave={handleSave} />
         </div>
     );

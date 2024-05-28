@@ -3,6 +3,7 @@ import { useGetProductsQuery } from '../../../api/product/productApi';
 import ProductSelection from './ProductSelection';
 import { reducer, INITIAL_STATE } from '../../../reducers/suppliers/supplier.reducer';
 import Form from '../../Form';
+import styles from "./SupplierFormContainer.module.scss"
 
 const SupplierFormContainer = ({ initialData = INITIAL_STATE, onSave }) => {
     const [state, dispatchState] = useReducer(reducer, initialData);
@@ -36,8 +37,9 @@ const SupplierFormContainer = ({ initialData = INITIAL_STATE, onSave }) => {
     if (error) return <div>Error getting available products!</div>;
 
     return (
-        <div>
+        <div className={styles.wrapper}>
             <Form
+                className={styles.form}
                 fields={[{
                     name: 'name',
                     type: 'text',
@@ -47,6 +49,7 @@ const SupplierFormContainer = ({ initialData = INITIAL_STATE, onSave }) => {
                 onFieldChange={handleInputChange}
             />
             <ProductSelection
+                className={styles.productSelection}
                 products={availableProducts}
                 selectedProducts={state.products}
                 onCheckboxChange={handleCheckboxChange}
