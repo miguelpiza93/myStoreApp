@@ -1,10 +1,11 @@
 import cn from 'classnames';
 import React from 'react';
+import styles from "./Form.module.scss"
 
 const Form = ({ className, title, fields, data, onFieldChange, onSubmit }) => {
     return (
-        <div className={cn(className)} >
-            <h1>{title}</h1>
+        <div className={cn(className, styles.wrapper)} >
+            <strong>{title}</strong>
             {fields.map(field => {
                 return (
                     <div key={field.name}>
@@ -21,11 +22,13 @@ const Form = ({ className, title, fields, data, onFieldChange, onSubmit }) => {
                 )
             })}
 
-            {onSubmit && <button
-                onClick={onSubmit}
-            >
-                Submit
-            </button>}
+            {onSubmit && <div className={styles.actionContainer} >
+                <button
+                    onClick={onSubmit}
+                >
+                    Submit
+                </button>
+            </div>}
         </div>
     );
 };

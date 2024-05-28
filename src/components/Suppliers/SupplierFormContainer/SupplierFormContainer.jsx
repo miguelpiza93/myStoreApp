@@ -2,7 +2,7 @@ import { useCallback, useReducer } from 'react';
 import { useGetProductsQuery } from '../../../api/product/productApi';
 import ProductSelection from './ProductSelection';
 import { reducer, INITIAL_STATE } from '../../../reducers/suppliers/supplier.reducer';
-import Form from '../../Form/Form';
+import Form from '../../Form';
 
 const SupplierFormContainer = ({ initialData = INITIAL_STATE, onSave }) => {
     const [state, dispatchState] = useReducer(reducer, initialData);

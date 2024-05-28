@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAddProductMutation } from "../../../api/product/productApi";
-import Form from "../../Form/Form";
+import Form from "../../Form";
+import styles from "./AddProduct.module.scss"
 
 const INITIAL_VALUE = {
     description: "",
@@ -41,13 +42,16 @@ const AddProduct = () => {
     ];
 
     return (
-        <Form
+        <div className={styles.wrapper}>
+            <Form
+            className={styles.form}
             title={"Agregar Producto"}
             fields={fields}
             data={product}
             onFieldChange={onFieldChange}
             onSubmit={onAddProductClick}
         />
+        </div>
     );
 }
 
