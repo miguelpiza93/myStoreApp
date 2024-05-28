@@ -11,6 +11,10 @@
     background-color: #d6d6d6;
 }
 
+.wrapper:nth-child(odd) {
+    background-color: #e7e7e7;
+}
+
 .info {
     padding: 5px;
     display: flex;

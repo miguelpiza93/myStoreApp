@@ -5,9 +5,11 @@ const SelectedProducts = ({ productInfoList }) => {
     return (
         <div className={styles.wrapper}>
             <strong>Selected products</strong>
-            {productInfoList.map(productInfo => (
-                <ProductCard key={productInfo.id} item={productInfo} />
-            ))}
+            <div className={styles.cardContainer}>
+                {productInfoList.map(productInfo => (
+                    <ProductCard key={productInfo.id} item={productInfo} />
+                ))}
+            </div>
         </div>
     )
 }
