@@ -18,15 +18,8 @@ const ProductTable = ({ className }) => {
           'Description'
         ]
       }
-      data={
-        products.map(product => {
-          return {
-            id: product.id,
-            name: product.name
-          }
-        })
-      }
-      onDelete={(item)=> removeProduct(item.id)} 
+      data={products}
+      onDelete={(item) => removeProduct(item.id)}
     />
   );
 };
