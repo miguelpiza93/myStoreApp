@@ -12,7 +12,7 @@ const SelectingSection = ({ className, onAdd }) => {
 
     const handleQuantityChange = (e) => {
         const { value } = e.target;
-        setQuantity(value);
+        setQuantity(parseInt(value));
     }
 
     const handleAddProduct = () => {
