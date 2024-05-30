@@ -14,8 +14,14 @@ const ProductTable = ({ className }) => {
       className={className}
       columns={
         [
-          'Name',
-          'Description'
+          {
+            label: 'Name',
+            accessor: 'name'
+          },
+          {
+            label: 'Description',
+            accessor: 'description'
+          }
         ]
       }
       data={products}

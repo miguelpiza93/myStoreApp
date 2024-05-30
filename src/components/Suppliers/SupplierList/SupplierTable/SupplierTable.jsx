@@ -31,7 +31,10 @@ const SupplierTable = ({ className }) => {
       className={className}
       columns={
         [
-          'Name',
+          {
+            label: 'Name',
+            accessor: 'name'
+          }
         ]
       }
       data={

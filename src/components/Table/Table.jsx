@@ -8,8 +8,8 @@ const Table = ({ className, columns, data, onEdit, onDelete, onDetail }) => {
     <table className={cn(className, styles.table)}>
       <thead>
         <tr>
-          {columns.map((col) => (
-            <th key={col} >{col}</th>
+          {columns.map((columnDefinition) => (
+            <th key={columnDefinition.accessor} >{columnDefinition.label}</th>
           ))}
           <th className={styles.actions} >Actions</th>
         </tr>

@@ -4,9 +4,9 @@ import styles from "./Row.module.scss"
 
 const Row = ({ data, columns, onEdit, onDelete, onDetail }) => {
     return <tr key={`tr_${data.id}`}>
-        {columns.map((col) => (
-            <td key={`td_${data[col.toLowerCase()]}`}>
-                {data[col.toLowerCase()]}
+        {columns.map((columnDefinition) => (
+            <td key={`td_${data[columnDefinition.accessor]}`}>
+                {data[columnDefinition.accessor]}
             </td>
         ))}
         <td className={styles.actions}>

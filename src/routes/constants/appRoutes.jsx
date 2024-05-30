@@ -2,8 +2,7 @@ import { AddProduct, ProductList } from "../../components/Product";
 import { SupplierList, Supplier } from "../../components/Suppliers";
 import EditSupplier from "../../components/Suppliers/EditSupplier";
 import Supplying from "../../components/Supplying/Supplying";
-import PurchaseOrderList from "../../components/PurchaseOrder/PurchaseOrderList";
-
+import { PurchaseOrderList, PurchaseOrderDetail } from "../../components/PurchaseOrder";
 
 
 export const getAppRoutes = () => [
@@ -63,6 +62,13 @@ export const getAppRoutes = () => [
     childRoutes: [],
     componentToDisplay: PurchaseOrderList,
     hidden: false
+  },
+  {
+    href: '/purchase-orders/:purchaseOrderId',
+    rightBadge: undefined,
+    childRoutes: [],
+    componentToDisplay: PurchaseOrderDetail,
+    hidden: true
   },
 ]
 
