@@ -2,10 +2,14 @@ import { useState } from "react";
 import SelectingSection from "./SelectingSection";
 import SelectedProducts from "./SelectedProducts";
 import styles from "./Supplying.module.scss"
+import { useAddPurchaseOrderMutation } from "../../api/purchaseOrder/purchaseOrder";
+import { useNavigate } from "react-router-dom";
 
 const Supplying = () => {
     const [selection, setSelection] = useState([]);
     const [selectedSupplier, setSelectedSupplier] = useState();
+    const [addPurchaseOrder] = useAddPurchaseOrderMutation();
+    const navigate = useNavigate();
 
     const handleProductAdd = (newProduct) => {
         setSelection(
@@ -24,7 +28,12 @@ const Supplying = () => {
             supplierId: selectedSupplier.id,
             purchaseOrderLines
         }
-        console.log(body);
+        addPurchaseOrder(body)
+        .then(()=>{
+            setSelection([])
+            setSelectedSupplier(undefined);
+            navigate("/products");
+        });
     }
 
     return (
