@@ -1,0 +1,16 @@
+.orderInformation {
+    padding-top: 50px;
+    padding-bottom: 30px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    * {
+        flex: 1;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .orderInformation {
+        flex-direction: row;
+    }
+}
