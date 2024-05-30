@@ -4,9 +4,7 @@ import SupplierSelection from "../SupplierSelection"
 import { SupplierProductSelection, SupplierProductSelectionSkeleton } from "../SupplierProductSelection"
 import styles from "./SelectingSection.module.scss"
 
-const SelectingSection = ({ className, onAdd }) => {
-
-    const [selectedSupplier, setSelectedSupplier] = useState();
+const SelectingSection = ({ className, onAdd, onSupplierSelection, selectedSupplier }) => {
     const [selectedProduct, setSelectedProduct] = useState();
     const [quantity, setQuantity] = useState(0);
 
@@ -17,9 +15,7 @@ const SelectingSection = ({ className, onAdd }) => {
 
     const handleAddProduct = () => {
         const productInfoToAdd = {
-            id: `${selectedSupplier.id}_${selectedProduct.id}`,
-            supplier: selectedSupplier,
-            product: selectedProduct,
+            ...selectedProduct,
             quantity
         }
         onAdd(productInfoToAdd);
@@ -28,7 +24,7 @@ const SelectingSection = ({ className, onAdd }) => {
 
     return (
         <div className={cn(className, styles.wrapper)}>
-            <SupplierSelection className={styles.option} onChange={setSelectedSupplier} />
+            <SupplierSelection className={styles.option} onChange={onSupplierSelection} />
             {!selectedSupplier ?
                 <SupplierProductSelectionSkeleton className={styles.option} />
                 : <SupplierProductSelection className={styles.option} supplierId={selectedSupplier?.id} onChange={setSelectedProduct} />

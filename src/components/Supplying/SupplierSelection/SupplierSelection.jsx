@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { useGetSuppliersQuery } from "../../../api/supplier/supplierApi";
 
 const SupplierSelection = ({ className, onChange }) => {
     const { data: suppliers, error, isLoading } = useGetSuppliersQuery();
+    const [isSupplierSelected, setIsSupplierSelected] = useState(false);
 
     if (isLoading) return <div>Loading...</div>
     if (!suppliers) return <div>Missing suppliers!</div>
@@ -11,12 +13,13 @@ const SupplierSelection = ({ className, onChange }) => {
         const { value } = e.target;
         const selected = suppliers.find(supplier => supplier.id === parseInt(value));
         onChange(selected);
+        setIsSupplierSelected(true);
     }
 
     return (
         <div className={className}>
             <label htmlFor="supplier-select">Supplier:</label>
-            <select name="suppliers" id="supplier-select" onChange={onChangeSelection}>
+            <select name="suppliers" id="supplier-select" onChange={onChangeSelection} disabled={isSupplierSelected}>
                 <option value="">Select an option</option>
                 {suppliers.map(supplier => {
                     return <option key={supplier.id} value={supplier.id}>{supplier.name}</option>
