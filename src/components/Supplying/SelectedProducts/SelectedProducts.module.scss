@@ -2,10 +2,19 @@
     padding: 15px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
     height: 180px;
 }
 
 .cardContainer {
     overflow-y: auto;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+
+    * {
+        flex: 1;
+    }
 }
