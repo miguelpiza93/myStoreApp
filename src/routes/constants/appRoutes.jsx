@@ -2,6 +2,7 @@ import { AddProduct, ProductList } from "../../components/Product";
 import { SupplierList, Supplier } from "../../components/Suppliers";
 import EditSupplier from "../../components/Suppliers/EditSupplier";
 import Supplying from "../../components/Supplying/Supplying";
+import PurchaseOrderList from "../../components/PurchaseOrder/PurchaseOrderList";
 
 
 
@@ -52,6 +53,15 @@ export const getAppRoutes = () => [
     rightBadge: undefined,
     childRoutes: [],
     componentToDisplay: Supplying,
+    hidden: false
+  },
+  {
+    icon: 'ProductIcon',
+    label: 'Purchase Orders',
+    href: '/purchase-orders',
+    rightBadge: undefined,
+    childRoutes: [],
+    componentToDisplay: PurchaseOrderList,
     hidden: false
   },
 ]
