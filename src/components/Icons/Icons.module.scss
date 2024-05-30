@@ -1,0 +1,15 @@
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+
+.iconInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.icon {
+    width: 100px;
+    height: 100px;
+}

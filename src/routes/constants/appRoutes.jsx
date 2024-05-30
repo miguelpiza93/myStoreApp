@@ -3,6 +3,7 @@ import { SupplierList, Supplier } from "../../components/Suppliers";
 import EditSupplier from "../../components/Suppliers/EditSupplier";
 import Supplying from "../../components/Supplying/Supplying";
 import { PurchaseOrderList, PurchaseOrderDetail } from "../../components/PurchaseOrder";
+import Icons from "../../components/Icons/Icons";
 
 
 export const getAppRoutes = () => [
@@ -46,7 +47,7 @@ export const getAppRoutes = () => [
     hidden: true
   },
   {
-    icon: 'ProductIcon',
+    icon: 'SupplyingIcon',
     label: 'Supplying',
     href: '/supplying',
     rightBadge: undefined,
@@ -55,7 +56,7 @@ export const getAppRoutes = () => [
     hidden: false
   },
   {
-    icon: 'ProductIcon',
+    icon: 'PurchaseIcon',
     label: 'Purchase Orders',
     href: '/purchase-orders',
     rightBadge: undefined,
@@ -68,6 +69,15 @@ export const getAppRoutes = () => [
     rightBadge: undefined,
     childRoutes: [],
     componentToDisplay: PurchaseOrderDetail,
+    hidden: true
+  },
+  {
+    icon: 'ProductIcon',
+    label: 'Icons',
+    href: '/icons',
+    rightBadge: undefined,
+    childRoutes: [],
+    componentToDisplay: Icons,
     hidden: true
   },
 ]
