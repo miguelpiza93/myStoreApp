@@ -18,6 +18,7 @@ const PurchaseOrderDetail = () => {
             <div className={styles.orderInformation}>
                 <div><strong>Supplier: </strong>{data.supplierName}</div>
                 <div><strong>Creation Date: </strong>{utcToLocalFormat(data.createdAt)}</div>
+                <div><strong>Estimated Delivery Date: </strong>{utcToLocalFormat(data.estimatedDeliveryDate)}</div>
             </div>
             {/* <button>Marcar como recibido</button> */}
             <SelectedProducts productInfoList={data.purchaseOrderLines.map(purchaseOrder => {
