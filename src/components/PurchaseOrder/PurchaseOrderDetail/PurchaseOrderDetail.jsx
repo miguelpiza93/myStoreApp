@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useGetPurchaseOrderQuery } from "../../../api/purchaseOrder/purchaseOrder";
 import SelectedProducts from "../../Supplying/SelectedProducts"
-import utcToLocalFormat from "../../../utils/DateUtils";
+import { utcToLocalFormat } from "../../../utils/DateUtils";
 import styles from "./PurchaseOrderDetail.module.scss"
 
 const PurchaseOrderDetail = () => {
@@ -18,7 +18,7 @@ const PurchaseOrderDetail = () => {
             <div className={styles.orderInformation}>
                 <div><strong>Supplier: </strong>{data.supplierName}</div>
                 <div><strong>Creation Date: </strong>{utcToLocalFormat(data.createdAt)}</div>
-                <div><strong>Estimated Delivery Date: </strong>{utcToLocalFormat(data.estimatedDeliveryDate)}</div>
+                <div><strong>Estimated Delivery Date: </strong>{utcToLocalFormat(data.estimatedDeliveryDate, true)}</div>
             </div>
             {/* <button>Marcar como recibido</button> */}
             <SelectedProducts productInfoList={data.purchaseOrderLines.map(purchaseOrder => {

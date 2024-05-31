@@ -4,11 +4,12 @@ import SelectedProducts from "./SelectedProducts";
 import styles from "./Supplying.module.scss"
 import { useAddPurchaseOrderMutation } from "../../api/purchaseOrder/purchaseOrder";
 import { useNavigate } from "react-router-dom";
+import { dateToString } from "../../utils/DateUtils";
 
 const Supplying = () => {
     const [selection, setSelection] = useState([]);
     const [selectedSupplier, setSelectedSupplier] = useState();
-    const [estimatedDeliveryDate, setEstimatedDeliveryDate] = useState(new Date().toISOString());
+    const [estimatedDeliveryDate, setEstimatedDeliveryDate] = useState(dateToString(new Date()));
     const [addPurchaseOrder] = useAddPurchaseOrderMutation();
     const navigate = useNavigate();
 
@@ -52,7 +53,7 @@ const Supplying = () => {
                     id="start"
                     name="trip-start"
                     value={estimatedDeliveryDate}
-                    min="2018-01-01"
+                    min={dateToString(new Date())}
                     onChange={handleInputChange}
                 />
             </div>

@@ -1,5 +1,5 @@
 import { useGetpurchaseOrdersQuery } from "../../../api/purchaseOrder/purchaseOrder";
-import utcToLocalFormat from "../../../utils/DateUtils";
+import { utcToLocalFormat } from "../../../utils/DateUtils";
 import Table from "../../../components/Table"
 import { useNavigate } from "react-router-dom";
 
