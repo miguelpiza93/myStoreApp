@@ -21,7 +21,7 @@ const ProductSelection = ({ className, products, selectedProducts, onCheckboxCha
                                 checked={selectedProducts.some(selectedProduct => selectedProduct?.id === product.id)}
                                 onChange={(e) => onCheckboxChange(e, product.id)}
                             />
-                            {product.name}</td>
+                            {product.name} - {product.description}</td>
                         <td>
                             <input
                                 id={`price_${product.id}`}

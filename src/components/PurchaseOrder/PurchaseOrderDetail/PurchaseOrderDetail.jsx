@@ -26,6 +26,7 @@ const PurchaseOrderDetail = () => {
                     ...purchaseOrder,
                     price: purchaseOrder.unitPrice,
                     name: purchaseOrder.product?.name,
+                    description: purchaseOrder.product?.description
                 }
             })} />
         </div>

@@ -5,7 +5,7 @@ const ProductCard = ({ item }) => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.info}>
-                <div>{item.name}</div>
+                <div>{item.name} - {item.description}</div>
             </div>
             <div className={styles.info}>{item.quantity}</div>
             <div className={styles.info}>{COP.format(item.price)}</div>
