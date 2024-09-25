@@ -20,6 +20,10 @@ export const supplierApi = createApi({
             query: (id) => `api/v1/suppliers/${id}`,
             providesTags: (result, error, id) => [{ type: 'Supplier', id }],
         }),
+        getSupplierProducts: builder.query({
+            query: (id) => `api/v1/suppliers/${id}/products`,
+            providesTags: (result, error, id) => [{ type: 'Supplier', id }],
+        }),
         addSupplier: builder.mutation({
             query: (body) => ({
                 url: 'api/v1/suppliers',
@@ -29,8 +33,8 @@ export const supplierApi = createApi({
             invalidatesTags: [{ type: 'Supplier', id: 'LIST' }]
         }),
         addProductToSupplier: builder.mutation({
-            query: (body) => ({
-                url: 'api/v1/supplier-products',
+            query: ({id, body}) => ({
+                url: `api/v1/suppliers/${id}/link-products`,
                 method: 'POST',
                 body,
             }),
@@ -69,6 +73,7 @@ export const supplierApi = createApi({
 export const {
     useGetSuppliersQuery,
     useGetSupplierQuery,
+    useGetSupplierProductsQuery,
     useAddSupplierMutation,
     useUpdateSupplierMutation,
     useDeleteSupplierMutation,

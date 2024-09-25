@@ -14,7 +14,7 @@ const Supplier = () => {
         const products = Object.fromEntries(
             state.products.map(({ id, price }) => [id, price])
         );
-        await addProductToSupplier({ products, supplierId });
+        await addProductToSupplier({ id: supplierId, body: { products } });
         navigate("/suppliers");
     };
 

@@ -25,7 +25,7 @@ const PurchaseOrderDetail = () => {
                 return {
                     ...purchaseOrder,
                     price: purchaseOrder.unitPrice,
-                    name: purchaseOrder.productName,
+                    name: purchaseOrder.product?.name,
                 }
             })} />
         </div>
