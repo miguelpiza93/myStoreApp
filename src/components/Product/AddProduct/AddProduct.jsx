@@ -35,11 +35,6 @@ const AddProduct = () => {
         setProduct({ ...product, [name]: value });
     };
 
-    const onChangeSelection = (e) => {
-        const { value } = e.target;
-        setProduct({ ...product, referenceUnitId: value });
-    }
-
     const options = units.map(unit => {
         return {
             key: parseInt(unit.id),
