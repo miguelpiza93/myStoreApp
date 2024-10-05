@@ -25,20 +25,27 @@ const AddProduct = () => {
 
     const onAddProductClick = () => {
         addProduct({ ...product })
-        .then(()=>{
-            navigate("/products");
-        });
+            .then(() => {
+                navigate("/products");
+            });
     };
 
     const onFieldChange = (event) => {
         const { name, value } = event.target;
-        setProduct({ ...product, [name]: parseInt(value) });
+        setProduct({ ...product, [name]: value });
     };
 
     const onChangeSelection = (e) => {
         const { value } = e.target;
         setProduct({ ...product, referenceUnitId: value });
     }
+
+    const options = units.map(unit => {
+        return {
+            key: parseInt(unit.id),
+            value: `${unit.name} - ${unit.symbol}`
+        }
+    })
 
     const fields = [
         {
@@ -50,28 +57,25 @@ const AddProduct = () => {
             name: 'description',
             type: 'text',
             placeholder: "Description"
-        }
+        },
+        {
+            name: 'referenceUnitId',
+            type: 'selection',
+            placeholder: "Unidad de referencia",
+            options,
+        },
     ];
 
     return (
         <div className={styles.wrapper}>
             <Form
-            className={styles.form}
-            title={"Agregar Producto"}
-            fields={fields}
-            data={product}
-            onFieldChange={onFieldChange}
-            onSubmit={onAddProductClick}
-        />
-        <div className={styles.form}>
-            <label htmlFor="unit-select">Unit:</label>
-            <select name="units" id="unit-select" onChange={onChangeSelection}>
-                <option value="">Select an option</option>
-                {units.map(unit => {
-                    return <option key={unit.id} value={unit.id}>{unit.name}</option>
-                })}
-            </select>
-        </div>
+                className={styles.form}
+                title={"Agregar Producto"}
+                fields={fields}
+                data={product}
+                onFieldChange={onFieldChange}
+                onSubmit={onAddProductClick}
+            />
         </div>
     );
 }
