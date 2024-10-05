@@ -35,7 +35,7 @@ const Supplying = () => {
             .then(() => {
                 setSelection([])
                 setSelectedSupplier(undefined);
-                navigate("/products");
+                navigate("/purchase-orders");
             });
     }
 

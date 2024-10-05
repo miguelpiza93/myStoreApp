@@ -28,6 +28,13 @@ export const purchaseOrderApi = createApi({
             }),
             invalidatesTags: [{ type: 'PurchaseOrder', id: 'LIST' }]
         }),
+        receivePurchaseOrder: builder.mutation({
+            query: (id) => ({
+                url: `api/v1/purchase-orders/${id}/receive`,
+                method: 'POST',
+            }),
+            invalidatesTags: [{ type: 'PurchaseOrder', id: 'LIST' }]
+        }),
         updatePurchaseOrder: builder.mutation({
             query: ({ id, ...patch }) => ({
                 url: `api/v1/purchase-orders/${id}`,
@@ -63,5 +70,6 @@ export const {
     useGetPurchaseOrderQuery,
     useAddPurchaseOrderMutation,
     useUpdatePurchaseOrderMutation,
-    useDeletePurchaseOrderMutation
+    useDeletePurchaseOrderMutation,
+    useReceivePurchaseOrderMutation,
 } = purchaseOrderApi;
