@@ -9,6 +9,12 @@
     }
 }
 
+.option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 @media screen and (min-width: 800px) {
     .orderInformation {
         flex-direction: row;

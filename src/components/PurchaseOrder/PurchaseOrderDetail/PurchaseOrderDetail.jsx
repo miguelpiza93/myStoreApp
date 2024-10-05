@@ -38,7 +38,7 @@ const PurchaseOrderDetail = () => {
                     description: purchaseOrder.product?.description
                 }
             })} />
-            <div className={styles.orderInformation}>
+            <div className={styles.option}>
                 <button disabled={data.status !== 'PENDING'} onClick={onReceiveClick}>Marcar como recibido</button>
             </div>
         </div>
