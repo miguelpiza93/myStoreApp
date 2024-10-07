@@ -16,9 +16,18 @@ export const stockApi = createApi({
                     ] :
                     [{ type: 'Stock', id: 'LIST' },]
         }),
+        setSalePrice: builder.mutation({
+            query: ({ id, ...body }) => ({
+                url: `api/v1/stock/${id}`,
+                method: 'POST',
+                body,
+            }),
+            invalidatesTags: [{ type: 'Stock', id: 'LIST' }]
+        }),
     }),
 })
 
 export const {
     useGetStockQuery,
+    useSetSalePriceMutation,
 } = stockApi;

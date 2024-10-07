@@ -1,12 +1,18 @@
-import { useGetStockQuery } from "../../../../api/stock/stockApi";
+import { useGetStockQuery, useSetSalePriceMutation } from "../../../../api/stock/stockApi";
 import Table from '../../../Table';
 
 const StockTable = ({ className }) => {
   const { data: stock, error, isLoading } = useGetStockQuery();
+  const [updateStockItem] = useSetSalePriceMutation();
+
 
   if (isLoading) return <div>Loading...</div>
   if (!stock) return <div>Missing stock!</div>
   if (error) return <div>Error getting stock!</div>
+
+  const onEdit = (data) => {
+    updateStockItem(data);
+};
 
   return (
     <Table
@@ -23,11 +29,14 @@ const StockTable = ({ className }) => {
           },
           {
             label: 'Precio de venta',
-            accessor: 'salePrice'
+            accessor: 'salePrice',
+            isEditable: true,
+            type: 'number',
           }
         ]
       }
       data={stock}
+      onEdit={onEdit}
     />
   );
 };
