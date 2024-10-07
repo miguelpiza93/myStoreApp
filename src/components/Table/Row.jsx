@@ -3,10 +3,28 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faArrowRight, faPencil, faBan, faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
 import styles from "./Row.module.scss";
 
+// Función para crear un input editable
+const EditableCell = ({ columnDefinition, value, onChange }) => {
+    return (
+        <input
+            type={columnDefinition.type || "text"}
+            placeholder="Enter value"
+            value={value}
+            onChange={onChange}
+        />
+    );
+};
+
+// Función para crear una celda no editable
+const ReadOnlyCell = ({ value }) => {
+    return <span>{value}</span>;
+};
+
 const Row = ({ data, columns, onEdit, onDelete, onDetail }) => {
-    const [editingField, setEditingField] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
     const [updatedData, setUpdatedData] = useState(data);
 
+    // Maneja el cambio de los valores de los inputs
     const handleInputChange = (event, accessor, type) => {
         const { value } = event.target;
         setUpdatedData(prev => ({
@@ -15,30 +33,40 @@ const Row = ({ data, columns, onEdit, onDelete, onDetail }) => {
         }));
     };
 
+    // Función para guardar los cambios
     const handleSave = () => {
-        setEditingField(null);
+        setIsEditing(false);
         onEdit(updatedData);
     };
 
+    // Función para cancelar la edición y restaurar los valores originales
     const handleCancel = () => {
-        setEditingField(null);
+        setIsEditing(false);
         setUpdatedData(data);
+    };
+
+    // Renderiza una celda: editable o de solo lectura
+    const renderCell = (columnDefinition) => {
+        const value = updatedData[columnDefinition.accessor] || data[columnDefinition.accessor];
+        
+        if (isEditing && columnDefinition.isEditable) {
+            return (
+                <EditableCell
+                    columnDefinition={columnDefinition}
+                    value={value}
+                    onChange={(e) => handleInputChange(e, columnDefinition.accessor, columnDefinition.type)}
+                />
+            );
+        }
+        
+        return <ReadOnlyCell value={value} />;
     };
 
     return (
         <tr key={`tr_${data.id}`}>
             {columns.map((columnDefinition) => (
                 <td key={`td_${data[columnDefinition.accessor]}`}>
-                    {editingField && columnDefinition.isEditable ? (
-                        <input
-                            type={columnDefinition.type || "text"}
-                            placeholder="Enter value"
-                            value={updatedData[columnDefinition.accessor] || data[columnDefinition.accessor]}
-                            onChange={(e) => handleInputChange(e, columnDefinition.accessor, columnDefinition.type)}
-                        />
-                    ) : (
-                        data[columnDefinition.accessor]
-                    )}
+                    {renderCell(columnDefinition)}
                 </td>
             ))}
             <td className={styles.actions}>
@@ -46,13 +74,13 @@ const Row = ({ data, columns, onEdit, onDelete, onDetail }) => {
 
                 {onEdit && (
                     <>
-                        {editingField ? (
+                        {isEditing ? (
                             <>
                                 <span onClick={handleSave}><FontAwesomeIcon icon={faFloppyDisk} /></span>
                                 <span onClick={handleCancel}><FontAwesomeIcon icon={faBan} /></span>
                             </>
                         ) : (
-                            <span onClick={() => setEditingField(true)}><FontAwesomeIcon icon={faPencil} /></span>
+                            <span onClick={() => setIsEditing(true)}><FontAwesomeIcon icon={faPencil} /></span>
                         )}
                     </>
                 )}
