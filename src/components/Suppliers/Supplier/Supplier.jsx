@@ -9,12 +9,13 @@ const Supplier = () => {
     const [addProductToSupplier] = useAddProductToSupplierMutation();
 
     const handleSave = async (state) => {
-        const response = await addSupplier({ name: state.name });
+        const { products, ...suppierData } = state;
+        const response = await addSupplier(suppierData);
         const supplierId = response.data.id;
-        const products = Object.fromEntries(
+        const productsToLink = Object.fromEntries(
             state.products.map(({ id, price }) => [id, price])
         );
-        await addProductToSupplier({ id: supplierId, body: { products } });
+        await addProductToSupplier({ id: supplierId, body: { products: productsToLink } });
         navigate("/suppliers");
     };
 

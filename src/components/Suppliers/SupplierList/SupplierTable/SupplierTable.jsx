@@ -34,19 +34,16 @@ const SupplierTable = ({ className }) => {
           {
             label: 'Name',
             accessor: 'name'
-          }
+          },
+          {
+            label: 'Phone',
+            accessor: 'phone'
+          },
         ]
       }
-      data={
-        suppliers.map(supplier => {
-          return {
-            id: supplier.id,
-            name: supplier.name
-          }
-        })
-      }
-      onDelete={(item)=> onRemove(item.id)} 
-      onDetail={(item)=> handleRedirectToDetail(item.id)}
+      data={suppliers}
+      onDelete={(item) => onRemove(item.id)}
+      onDetail={(item) => handleRedirectToDetail(item.id)}
     />
   );
 };

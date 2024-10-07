@@ -10,8 +10,8 @@ const SupplierFormContainer = ({ initialData = INITIAL_STATE, onSave }) => {
     const { data: availableProducts, error, isLoading } = useGetProductsQuery();
 
     const handleInputChange = useCallback((event) => {
-        const { value } = event.target;
-        dispatchState({ type: 'SET_NAME', value });
+        const { name, value } = event.target;
+        dispatchState({ type: 'SET_FIELD', field: name, value });
     }, []);
 
     const handleCheckboxChange = useCallback((event, productId) => {
@@ -36,22 +36,34 @@ const SupplierFormContainer = ({ initialData = INITIAL_STATE, onSave }) => {
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error getting available products!</div>;
 
+    const fields = [
+        {
+            name: 'name',
+            type: 'text',
+            placeholder: "Name"
+        },
+        {
+            name: 'phone',
+            type: 'text',
+            placeholder: "Phone"
+        },
+    ];
+
+    const { products, ...suppierData } = state;
+
+
     return (
         <div className={styles.wrapper}>
             <Form
                 className={styles.form}
-                fields={[{
-                    name: 'name',
-                    type: 'text',
-                    placeholder: "Name"
-                }]}
-                data={{name: state.name}}
+                fields={fields}
+                data={suppierData}
                 onFieldChange={handleInputChange}
             />
             <ProductSelection
                 className={styles.productSelection}
                 products={availableProducts}
-                selectedProducts={state.products}
+                selectedProducts={products}
                 onCheckboxChange={handleCheckboxChange}
                 onPriceChange={handlePriceChange}
             />

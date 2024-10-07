@@ -1,9 +1,10 @@
 export const INITIAL_STATE = {
     name: "",
+    phone: "",
     products: []
 };
 
-const handleNameChange = (state, value) => ({ ...state, name: value });
+const handleFieldChange = (state, action) => ({ ...state, [action.field]: action.value });
 
 const handlePriceChange = (state, productId, value) => ({
     ...state,
@@ -26,8 +27,8 @@ const handleProductSelection = (state, selectedProduct, checked) => {
 
 export const reducer = (state, action) => {
     switch (action.type) {
-        case 'SET_NAME':
-            return handleNameChange(state, action.value);
+        case 'SET_FIELD':
+            return handleFieldChange(state, action);
         case 'SET_PRICE':
             return handlePriceChange(state, action.productId, action.value);
         case 'TOGGLE_PRODUCT':
