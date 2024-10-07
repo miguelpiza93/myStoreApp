@@ -1,5 +1,5 @@
 import styles from "./ProductCard.module.scss"
-import COP from "../../../utils/CurrencyUtils"
+import COP from "../../../../utils/CurrencyUtils"
 
 const ProductCard = ({ item }) => {
     return (

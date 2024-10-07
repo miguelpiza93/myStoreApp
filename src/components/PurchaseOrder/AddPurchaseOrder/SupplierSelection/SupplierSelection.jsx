@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useGetSuppliersQuery } from "../../../api/supplier/supplierApi";
+import { useGetSuppliersQuery } from "../../../../api/supplier/supplierApi";
 
 const SupplierSelection = ({ className, onChange }) => {
     const { data: suppliers, error, isLoading } = useGetSuppliersQuery();

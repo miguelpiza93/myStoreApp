@@ -2,8 +2,7 @@ import { AddProduct, ProductList } from "../../components/Product";
 import { SupplierList, Supplier } from "../../components/Suppliers";
 import { StockList } from "../../components/Stock";
 import EditSupplier from "../../components/Suppliers/EditSupplier";
-import Supplying from "../../components/Supplying/Supplying";
-import { PurchaseOrderList, PurchaseOrderDetail } from "../../components/PurchaseOrder";
+import { PurchaseOrderList, PurchaseOrderDetail, AddPurchaseOrder } from "../../components/PurchaseOrder";
 import Icons from "../../components/Icons/Icons";
 
 
@@ -30,7 +29,7 @@ export const getAppRoutes = () => [
     href: '/purchase-orders/new',
     rightBadge: undefined,
     childRoutes: [],
-    componentToDisplay: Supplying,
+    componentToDisplay: AddPurchaseOrder,
     hidden: true
   },
   {

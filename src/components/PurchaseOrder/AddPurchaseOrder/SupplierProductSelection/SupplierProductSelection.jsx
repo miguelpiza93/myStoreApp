@@ -1,4 +1,4 @@
-import { useGetSupplierProductsQuery } from "../../../api/supplier/supplierApi";
+import { useGetSupplierProductsQuery } from "../../../../api/supplier/supplierApi";
 
 const SupplierProductSelection = ({ className, supplierId, onChange }) => {
     const { data: supplierProducts, error, isLoading } = useGetSupplierProductsQuery(supplierId);

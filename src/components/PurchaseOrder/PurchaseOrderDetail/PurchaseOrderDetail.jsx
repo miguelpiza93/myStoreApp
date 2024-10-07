@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useGetPurchaseOrderQuery, useReceivePurchaseOrderMutation } from "../../../api/purchaseOrder/purchaseOrder";
-import SelectedProducts from "../../Supplying/SelectedProducts"
+import SelectedProducts from "../AddPurchaseOrder/SelectedProducts"
 import { utcToLocalFormat } from "../../../utils/DateUtils";
 import styles from "./PurchaseOrderDetail.module.scss"
 

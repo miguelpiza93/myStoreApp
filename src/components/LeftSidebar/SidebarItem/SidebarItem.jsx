@@ -8,7 +8,6 @@ const iconMap = {
   ProductIcon: faBoxesStacked,
   HomeIcon: faHome,
   PurchaseIcon: faClipboardList,
-  SupplyingIcon: faTruckFast,
   StockIcon: faBox,
 };
 

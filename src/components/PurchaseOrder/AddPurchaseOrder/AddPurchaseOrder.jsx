@@ -1,12 +1,12 @@
 import { useState } from "react";
 import SelectingSection from "./SelectingSection";
 import SelectedProducts from "./SelectedProducts";
-import styles from "./Supplying.module.scss"
-import { useAddPurchaseOrderMutation } from "../../api/purchaseOrder/purchaseOrder";
+import styles from "./AddPurchaseOrder.module.scss"
+import { useAddPurchaseOrderMutation } from "../../../api/purchaseOrder/purchaseOrder";
 import { useNavigate } from "react-router-dom";
-import { dateToString } from "../../utils/DateUtils";
+import { dateToString } from "../../../utils/DateUtils";
 
-const Supplying = () => {
+const AddPurchaseOrder = () => {
     const [selection, setSelection] = useState([]);
     const [selectedSupplier, setSelectedSupplier] = useState();
     const [estimatedDeliveryDate, setEstimatedDeliveryDate] = useState(dateToString(new Date()));
@@ -19,7 +19,7 @@ const Supplying = () => {
         )
     }
 
-    const handleSaveSupplying = () => {
+    const handleCreateOrder = () => {
         const purchaseOrderLines = selection.map(selectedItem => {
             return {
                 productId: selectedItem.id,
@@ -60,7 +60,7 @@ const Supplying = () => {
             <SelectingSection className={styles.child} onAdd={handleProductAdd} onSupplierSelection={setSelectedSupplier} selectedSupplier={selectedSupplier} />
             <SelectedProducts productInfoList={selection} />
             <div>
-                <button disabled={!selection} onClick={handleSaveSupplying}>
+                <button disabled={!selection} onClick={handleCreateOrder}>
                     Save
                 </button>
             </div>
@@ -68,4 +68,4 @@ const Supplying = () => {
     )
 }
 
-export default Supplying;
+export default AddPurchaseOrder;
