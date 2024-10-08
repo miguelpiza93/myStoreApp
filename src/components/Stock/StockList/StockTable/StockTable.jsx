@@ -28,6 +28,10 @@ const StockTable = ({ className }) => {
             accessor: 'quantity'
           },
           {
+            label: 'Costo Ponderado',
+            accessor: 'weightedCost'
+          },
+          {
             label: 'Precio de venta',
             accessor: 'salePrice',
             isEditable: true,
