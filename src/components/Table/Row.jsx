@@ -48,7 +48,9 @@ const Row = ({ data, columns, onEdit, onDelete, onDetail }) => {
     // Renderiza una celda: editable o de solo lectura
     const renderCell = (columnDefinition) => {
         const value = updatedData[columnDefinition.accessor] || data[columnDefinition.accessor];
-        
+        const formatter = columnDefinition.formatter
+        const finalValue = formatter ? formatter.format(value) : value;
+
         if (isEditing && columnDefinition.isEditable) {
             return (
                 <EditableCell
@@ -58,8 +60,8 @@ const Row = ({ data, columns, onEdit, onDelete, onDetail }) => {
                 />
             );
         }
-        
-        return <ReadOnlyCell value={value} />;
+
+        return <ReadOnlyCell value={finalValue} />;
     };
 
     return (

@@ -1,21 +1,51 @@
-import ProductCard from "../ProductCard"
 import styles from "./SelectedProducts.module.scss"
+import COP from "../../../../utils/CurrencyUtils"
+import Table from '../../../Table';
+
 
 const SelectedProducts = ({ productInfoList }) => {
+    const onEdit = (data) => {
+        console.log(data);
+    };
     return (
         <div className={styles.wrapper}>
             <strong>Selected products</strong>
-            <div className={styles.header}>
-                <strong>Nombre</strong>
-                <strong>Cantidad</strong>
-                <strong>Precio Unitario</strong>
-                <strong>Total</strong>
-            </div>
-            <div className={styles.cardContainer}>
-                {productInfoList.map(productInfo => (
-                    <ProductCard key={productInfo.id} item={productInfo} />
-                ))}
-            </div>
+            <Table
+                columns={
+                    [
+                        {
+                            label: 'Nombre',
+                            accessor: 'productFullName'
+                        },
+                        {
+                            label: 'Cantidad',
+                            accessor: 'quantity'
+                        },
+                        {
+                            label: 'Precio Unitario',
+                            accessor: 'unitPrice',
+                            isEditable: true,
+                            type: 'number',
+                            formatter: COP,
+                        },
+                        {
+                            label: 'Total',
+                            accessor: 'total',
+                            formatter: COP,
+                        }
+                    ]
+                }
+                data={productInfoList.map(item => {
+                    return {
+                        id: item.id,
+                        productFullName: `${item.name} - ${item.product.description}`,
+                        quantity: item.quantity,
+                        unitPrice: item.unitPrice,
+                        total: item.unitPrice * item.quantity,
+                    }
+                })}
+                onEdit={onEdit}
+            />
         </div>
     )
 }
