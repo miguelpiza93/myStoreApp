@@ -1,9 +1,10 @@
-import { useGetStockSummaryQuery, useSetSalePriceMutation } from "../../../../api/stock/stockApi";
+import { useGetStockSummaryQuery } from "../../../../api/stock/stockApi";
+import { useSetSalePriceMutation } from "../../../../api/product/productApi";
 import Table from '../../../Table';
 
 const StockTable = ({ className }) => {
   const { data: stock, error, isLoading } = useGetStockSummaryQuery();
-  const [updateStockItem] = useSetSalePriceMutation();
+  const [setProductSalePrice] = useSetSalePriceMutation();
 
 
   if (isLoading) return <div>Loading...</div>
@@ -11,7 +12,7 @@ const StockTable = ({ className }) => {
   if (error) return <div>Error getting stock!</div>
 
   const onEdit = (data) => {
-    updateStockItem(data);
+    setProductSalePrice(data);
   };
 
   return (
