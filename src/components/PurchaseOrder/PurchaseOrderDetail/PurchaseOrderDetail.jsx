@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { useGetPurchaseOrderQuery, useReceivePurchaseOrderMutation } from "../../../api/purchaseOrder/purchaseOrder";
+import { useGetPurchaseOrderQuery, useReceivePurchaseOrderMutation, useUpdatePurchaseOrderLineMutation } from "../../../api/purchaseOrder/purchaseOrder";
 import SelectedProducts from "../AddPurchaseOrder/SelectedProducts"
 import { utcToLocalFormat } from "../../../utils/DateUtils";
 import styles from "./PurchaseOrderDetail.module.scss"
@@ -11,6 +11,7 @@ const PurchaseOrderDetail = () => {
     const { data, error, isLoading } = useGetPurchaseOrderQuery(purchaseOrderId);
     const navigate = useNavigate();
     const [receivePurchaseOrder] = useReceivePurchaseOrderMutation();
+    const [updateUnitPrice] = useUpdatePurchaseOrderLineMutation();
 
     if (isLoading) return <div>Loading...</div>;
     if (!data) return <div>Missing data!</div>;
@@ -18,13 +19,13 @@ const PurchaseOrderDetail = () => {
 
     const onReceiveClick = () => {
         receivePurchaseOrder(purchaseOrderId)
-        .then(()=>{
-            navigate("/purchase-orders");
-        });
+            .then(() => {
+                navigate("/purchase-orders");
+            });
     };
 
     const onEdit = (data) => {
-        console.log(data);
+        updateUnitPrice({ orderId: purchaseOrderId, lineId: data.id, unitPrice: data.unitPrice });
     }
 
     return (
@@ -42,7 +43,7 @@ const PurchaseOrderDetail = () => {
                     description: purchaseOrder.product?.description
                 }
             })}
-            onEdit={onEdit} />
+                onEdit={data.status === 'PENDING' ? onEdit : null} />
             <div className={styles.option}>
                 <button disabled={data.status !== 'PENDING'} onClick={onReceiveClick}>Marcar como recibido</button>
             </div>

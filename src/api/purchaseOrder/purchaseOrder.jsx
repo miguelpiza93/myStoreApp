@@ -55,6 +55,26 @@ export const purchaseOrderApi = createApi({
             },
             invalidatesTags: (result, error, { id }) => [{ type: 'PurchaseOrder', id }],
         }),
+        updatePurchaseOrderLine: builder.mutation({
+            query: ({ orderId, lineId, ...patch }) => ({
+                url: `api/v1/purchase-orders/${orderId}/lines/${lineId}`,
+                method: 'PATCH',
+                body: patch,
+            }),
+            async onQueryStarted({ id, ...patch }, { dispatch, queryFulfilled }) {
+                const patchResult = dispatch(
+                    purchaseOrderApi.util.updateQueryData('getPurchaseOrder', id, (draft) => {
+                        Object.assign(draft, patch)
+                    }),
+                )
+                try {
+                    await queryFulfilled
+                } catch {
+                    patchResult.undo()
+                }
+            },
+            invalidatesTags: (result, error, { id }) => [{ type: 'PurchaseOrder', id }],
+        }),
         deletePurchaseOrder: builder.mutation({
             query: (id) => ({
                 url: `api/v1/purchase-orders/${id}`,
@@ -72,4 +92,5 @@ export const {
     useUpdatePurchaseOrderMutation,
     useDeletePurchaseOrderMutation,
     useReceivePurchaseOrderMutation,
+    useUpdatePurchaseOrderLineMutation,
 } = purchaseOrderApi;
