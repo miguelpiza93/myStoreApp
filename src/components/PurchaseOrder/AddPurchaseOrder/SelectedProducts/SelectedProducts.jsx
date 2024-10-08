@@ -3,10 +3,7 @@ import COP from "../../../../utils/CurrencyUtils"
 import Table from '../../../Table';
 
 
-const SelectedProducts = ({ productInfoList }) => {
-    const onEdit = (data) => {
-        console.log(data);
-    };
+const SelectedProducts = ({ productInfoList, onEdit }) => {
     return (
         <div className={styles.wrapper}>
             <strong>Selected products</strong>
@@ -38,7 +35,7 @@ const SelectedProducts = ({ productInfoList }) => {
                 data={productInfoList.map(item => {
                     return {
                         id: item.id,
-                        productFullName: `${item.name} - ${item.product.description}`,
+                        productFullName: `${item.name} - ${item.description}`,
                         quantity: item.quantity,
                         unitPrice: item.unitPrice,
                         total: item.unitPrice * item.quantity,

@@ -23,6 +23,10 @@ const PurchaseOrderDetail = () => {
         });
     };
 
+    const onEdit = (data) => {
+        console.log(data);
+    }
+
     return (
         <div>
             <div className={styles.orderInformation}>
@@ -37,7 +41,8 @@ const PurchaseOrderDetail = () => {
                     name: purchaseOrder.product?.name,
                     description: purchaseOrder.product?.description
                 }
-            })} />
+            })}
+            onEdit={onEdit} />
             <div className={styles.option}>
                 <button disabled={data.status !== 'PENDING'} onClick={onReceiveClick}>Marcar como recibido</button>
             </div>

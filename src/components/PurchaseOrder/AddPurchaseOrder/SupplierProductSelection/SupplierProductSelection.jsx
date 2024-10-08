@@ -10,7 +10,7 @@ const SupplierProductSelection = ({ className, supplierId, onChange }) => {
     let productsDataInfo = supplierProducts.map(sp=>{
         return {
             id: sp.product.id,
-            price: sp.price,
+            unitPrice: sp.price,
             name: sp.product.name,
             description: sp.product.description
         }
