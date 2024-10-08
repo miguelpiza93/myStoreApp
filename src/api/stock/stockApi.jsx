@@ -6,8 +6,8 @@ export const stockApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: config.apiUrl }),
     tagTypes: ['Stock'],
     endpoints: (builder) => ({
-        getStock: builder.query({
-            query: () => 'api/v1/stock',
+        getStockSummary: builder.query({
+            query: () => 'api/v1/stock/summary',
             providesTags: (result) =>
                 result ?
                     [
@@ -18,7 +18,7 @@ export const stockApi = createApi({
         }),
         setSalePrice: builder.mutation({
             query: ({ id, ...body }) => ({
-                url: `api/v1/stock/${id}`,
+                url: `api/v1/stock/products/${id}`,
                 method: 'POST',
                 body,
             }),
@@ -28,6 +28,6 @@ export const stockApi = createApi({
 })
 
 export const {
-    useGetStockQuery,
+    useGetStockSummaryQuery,
     useSetSalePriceMutation,
 } = stockApi;
