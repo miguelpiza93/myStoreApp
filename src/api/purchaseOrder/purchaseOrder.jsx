@@ -33,7 +33,7 @@ export const purchaseOrderApi = createApi({
                 url: `api/v1/purchase-orders/${id}/receive`,
                 method: 'POST',
             }),
-            invalidatesTags: [{ type: 'PurchaseOrder', id: 'LIST' }]
+            invalidatesTags: [{ type: 'PurchaseOrder', id: 'LIST' }, { type: 'Stock', id: 'LIST' }]
         }),
         updatePurchaseOrder: builder.mutation({
             query: ({ id, ...patch }) => ({
