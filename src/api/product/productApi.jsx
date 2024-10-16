@@ -43,7 +43,7 @@ export const productApi = createApi({
                 method: 'PATCH',
                 body,
             }),
-            invalidatesTags: [{ type: 'Product', id: 'LIST' }]
+            invalidatesTags: (result, error, data) => [{ type: 'Product', id: data.productId }],
         }),
     }),
 })
