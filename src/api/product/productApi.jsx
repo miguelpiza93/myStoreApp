@@ -16,6 +16,10 @@ export const productApi = createApi({
                     ] :
                     [{ type: 'Product', id: 'LIST' },]
         }),
+        getProduct: builder.query({
+            query: (id) => `api/v1/products/${id}`,
+            providesTags: (result, error, id) => [{ type: 'Product', id }],
+        }),
         addProduct: builder.mutation({
             query: (body) => ({
                 url: 'api/v1/products',
@@ -34,8 +38,8 @@ export const productApi = createApi({
             invalidatesTags: (result, error, id) => [{ type: 'Product', id }],
         }),
         setSalePrice: builder.mutation({
-            query: ({ id, ...body }) => ({
-                url: `api/v1/products/${id}`,
+            query: ({ productId, ...body }) => ({
+                url: `api/v1/products/${productId}`,
                 method: 'PATCH',
                 body,
             }),
@@ -49,4 +53,5 @@ export const {
     useAddProductMutation,
     useDeleteProductMutation,
     useSetSalePriceMutation,
+    useGetProductQuery,
 } = productApi;

@@ -1,4 +1,4 @@
-import { AddProduct, ProductList } from "../../components/Product";
+import { AddProduct, ProductList, EditProduct } from "../../components/Product";
 import { SupplierList, Supplier } from "../../components/Suppliers";
 import { StockList } from "../../components/Stock";
 import EditSupplier from "../../components/Suppliers/EditSupplier";
@@ -40,6 +40,13 @@ export const getAppRoutes = () => [
     childRoutes: [],
     componentToDisplay: ProductList,
     hidden: false
+  },
+  {
+    href: '/products/:productId',
+    rightBadge: undefined,
+    childRoutes: [],
+    componentToDisplay: EditProduct,
+    hidden: true
   },
   {
     icon: 'SupplierIcon',
