@@ -1,63 +1,61 @@
 import React, { useState } from "react";
+import styles from "./SearchableDropdown.module.scss"; // Importar el archivo de estilos
 
 const SearchableDropdown = ({
-  placeholder = "Search...", // Placeholder configurable
-  data = [],                 // Conjunto de datos
-  searchField = "name",       // Campo de búsqueda configurable
-  onSelect,                   // Callback de selección
+  placeholder = "Search...",
+  data = [],
+  searchField = "name",
+  onSelect,
 }) => {
-  const [query, setQuery] = useState("");  // Estado del campo de búsqueda
-  const [filteredData, setFilteredData] = useState([]); // Resultados filtrados
-  const [showDropdown, setShowDropdown] = useState(false); // Controlar si el dropdown está visible
+  const [query, setQuery] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
+  const [showDropdown, setShowDropdown] = useState(false);
 
-  // Función para manejar los cambios en el input de búsqueda
   const handleInputChange = (e) => {
     const value = e.target.value;
     setQuery(value);
     
     if (value) {
-      // Filtrar los datos según el campo de búsqueda configurado
-      const filtered = data.filter((item) => 
+      const filtered = data.filter((item) =>
         item[searchField].toLowerCase().includes(value.toLowerCase())
       );
       setFilteredData(filtered);
-      setShowDropdown(true); // Mostrar dropdown si hay resultados
+      setShowDropdown(true);
     } else {
       setFilteredData([]);
-      setShowDropdown(false); // Ocultar dropdown si el input está vacío
+      setShowDropdown(false);
     }
   };
 
-  // Función para manejar la selección de un elemento
   const handleSelect = (item) => {
-    setQuery(item[searchField]); // Actualizar el campo de búsqueda con el elemento seleccionado
-    setShowDropdown(false); // Ocultar el dropdown
-    if (onSelect) onSelect(item); // Llamar al callback de selección
+    setQuery(item[searchField]);
+    setShowDropdown(false);
+    if (onSelect) onSelect(item);
   };
 
   return (
-    <div className="searchable-dropdown">
+    <div className={styles["searchable-dropdown"]}>
       <input
         type="text"
         value={query}
         onChange={handleInputChange}
         placeholder={placeholder}
-        className="search-input"
+        className={styles["search-input"]}
       />
       {showDropdown && (
-        <ul className="dropdown-list">
+        <ul className={styles["dropdown-list"]}>
           {filteredData.length > 0 ? (
             filteredData.map((item) => (
               <li
                 key={item.id}
                 onClick={() => handleSelect(item)}
-                className="dropdown-item"
+                className={styles["dropdown-item"]}
               >
                 {item[searchField]}
               </li>
             ))
           ) : (
-            <li className="dropdown-item no-match">No results found</li>
+            <li className={styles["no-match"]}>No results found</li>
           )}
         </ul>
       )}
