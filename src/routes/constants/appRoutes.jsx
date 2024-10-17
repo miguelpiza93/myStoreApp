@@ -1,12 +1,29 @@
 import { AddProduct, ProductList, EditProduct } from "../../components/Product";
 import { SupplierList, Supplier } from "../../components/Suppliers";
 import { StockList } from "../../components/Stock";
+import { Sales, RegisterSale } from "../../components/Sales";
 import EditSupplier from "../../components/Suppliers/EditSupplier";
 import { PurchaseOrderList, PurchaseOrderDetail, AddPurchaseOrder } from "../../components/PurchaseOrder";
 import Icons from "../../components/Icons/Icons";
 
 
 export const getAppRoutes = () => [
+  {
+    icon: 'SalesIcon',
+    label: 'Sales',
+    href: '/sales',
+    rightBadge: undefined,
+    childRoutes: [],
+    componentToDisplay: Sales,
+    hidden: false
+  },
+  {
+    href: '/sales/new',
+    rightBadge: undefined,
+    childRoutes: [],
+    componentToDisplay: RegisterSale,
+    hidden: true
+  },
   {
     icon: 'StockIcon',
     label: 'Stock',

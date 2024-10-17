@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBoxesStacked, faCartFlatbed, faHome, faClipboardList, faTruckFast, faBox } from '@fortawesome/free-solid-svg-icons';
+import { faBoxesStacked, faCartFlatbed, faHome, faClipboardList, faCashRegister, faBox } from '@fortawesome/free-solid-svg-icons';
 import styles from "./SidebarItem.module.scss";
 
 const iconMap = {
@@ -9,6 +9,8 @@ const iconMap = {
   HomeIcon: faHome,
   PurchaseIcon: faClipboardList,
   StockIcon: faBox,
+  SalesIcon: faCashRegister,
+
 };
 
 const SidebarItem = ({ icon, label, rightBadge, className, onClick }) => {
