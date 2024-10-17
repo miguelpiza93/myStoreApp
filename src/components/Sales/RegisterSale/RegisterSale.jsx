@@ -1,18 +1,18 @@
 import { useNavigate } from "react-router-dom";
+import { useGetStockSummaryQuery } from "../../../api/stock/stockApi";
 import SearchableDropdown from "../../SearchableDropdown";
 
 const RegisterSale = () => {
     const navigate = useNavigate();
+    const { data, error, isLoading } = useGetStockSummaryQuery();
+
+    if (isLoading) return <div>Loading...</div>
+    if (!data) return <div>Missing stock!</div>
+    if (error) return <div>Error getting stock!</div>
 
     const handleRegisterSale = () => {
         navigate("/sales");
     }
-
-    const sampleData = [
-        { id: 1, name: "Apple", description: "A tasty fruit" },
-        { id: 2, name: "Banana", description: "A yellow fruit" },
-        { id: 3, name: "Cherry", description: "A small red fruit" },
-    ];
 
     const handleSelect = (item) => {
         console.log("Selected item:", item);
@@ -20,12 +20,12 @@ const RegisterSale = () => {
 
     return (
         <div>
-            <h1>Searchable Dropdown</h1>
+            <h1>Registrar Venta</h1>
             <SearchableDropdown
-                placeholder="Search for a fruit..." // Configurar placeholder
-                data={sampleData}                   // Datos que se pasan al componente
-                searchField="name"                   // Campo de búsqueda
-                onSelect={handleSelect}              // Callback de selección
+                placeholder="Search for a product..."
+                data={data.map(stockItem => { return { ...stockItem, id: stockItem.productId } })}
+                searchField="productName"
+                onSelect={handleSelect}
             />
             <button onClick={handleRegisterSale} aria-labelledby="submit">
                 Guardar
