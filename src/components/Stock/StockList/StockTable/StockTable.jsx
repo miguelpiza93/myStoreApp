@@ -18,6 +18,10 @@ const StockTable = ({ className }) => {
             accessor: 'productName'
           },
           {
+            label: 'Vendor',
+            accessor: 'vendorName'
+          },
+          {
             label: 'Cantidad',
             accessor: 'quantity'
           },
@@ -28,7 +32,7 @@ const StockTable = ({ className }) => {
         ]
       }
       data={stock.map(item => {
-        return { id: item.productId, ...item }
+        return { id: item.vendorProductId, ...item }
       })}
     />
   );
