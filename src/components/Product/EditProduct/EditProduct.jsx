@@ -1,12 +1,13 @@
 import { useParams } from 'react-router-dom';
-import { useGetProductQuery, useSetSalePriceMutation } from '../../../api/product/productApi';
+import { useSetSalePriceMutation } from '../../../api/product/productApi';
+import { useGetSupplierProductQuery } from '../../../api/supplier/supplierApi';
 import Table from '../../Table';
 import COP from "../../../utils/CurrencyUtils"
 import styles from "./EditProduct.module.scss"
 
 const EditProduct = () => {
-    const { productId } = useParams();
-    const { data, error, isLoading } = useGetProductQuery(productId);
+    const { productId, vendorId } = useParams();
+    const { data, error, isLoading } = useGetSupplierProductQuery({vendorId, productId});
     const [setProductSalePrice] = useSetSalePriceMutation();
 
 
@@ -15,14 +16,14 @@ const EditProduct = () => {
     if (error) return <div>Error getting product!</div>;
 
     const onEdit = (data) => {
-        setProductSalePrice({ unitId: data.unitId, salePrice: data.price, productId });
+        setProductSalePrice({ unitId: data.unitId, salePrice: data.price, productId, vendorId });
     };
 
 
     return (
         <div className={styles.wrapper}>
             <strong>{"Configuración de Producto"}</strong>
-            <div><strong>{data.name} - {data.description}</strong></div>
+            <div><strong>{data.name}: {data.description} - {data.vendorName}</strong></div>
             <Table className={styles.wrapper}
                 columns={
                     [
@@ -39,7 +40,7 @@ const EditProduct = () => {
                         }
                     ]
                 }
-                data={data.prices.map(price => { return { ...price, id: price.unitId } })}
+                data={data.salePrices.map(price => { return { ...price, id: price.unitId } })}
                 onEdit={onEdit}
             />
         </div>

@@ -59,7 +59,7 @@ export const getAppRoutes = () => [
     hidden: false
   },
   {
-    href: '/products/:productId',
+    href: '/products/:productId/vendor/:vendorId',
     rightBadge: undefined,
     childRoutes: [],
     componentToDisplay: EditProduct,

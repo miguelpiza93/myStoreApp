@@ -24,6 +24,9 @@ export const supplierApi = createApi({
             query: (id) => `api/v1/suppliers/${id}/products`,
             providesTags: (result, error, id) => [{ type: 'Supplier', id }],
         }),
+        getSupplierProduct: builder.query({
+            query: ({vendorId, productId, ...args}) => `api/v1/suppliers/${vendorId}/products/${productId}`
+        }),
         addSupplier: builder.mutation({
             query: (body) => ({
                 url: 'api/v1/suppliers',
@@ -74,6 +77,7 @@ export const {
     useGetSuppliersQuery,
     useGetSupplierQuery,
     useGetSupplierProductsQuery,
+    useGetSupplierProductQuery,
     useAddSupplierMutation,
     useUpdateSupplierMutation,
     useDeleteSupplierMutation,
