@@ -23,8 +23,8 @@ const RegisterSale = () => {
             <h1>Registrar Venta</h1>
             <SearchableDropdown
                 placeholder="Search for a product..."
-                data={data.map(stockItem => { return { ...stockItem, id: stockItem.productId } })}
-                searchField="productName"
+                data={data.map(stockItem => { return { ...stockItem, id: stockItem.vendorProductId } })}
+                searchField="fullDescription"
                 onSelect={handleSelect}
             />
             <button onClick={handleRegisterSale} aria-labelledby="submit">

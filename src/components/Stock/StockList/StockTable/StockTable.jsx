@@ -20,12 +20,8 @@ const StockTable = ({ className }) => {
       columns={
         [
           {
-            label: 'Name',
-            accessor: 'productName'
-          },
-          {
-            label: 'Vendor',
-            accessor: 'vendorName'
+            label: 'Item',
+            accessor: 'fullDescription'
           },
           {
             label: 'Cantidad',
