@@ -14,9 +14,9 @@ const AddItemModal = ({ isOpen, onClose, onAdd, item }) => {
 
     const handleAddClick = () => {
         if (selectedUnit && quantity) {
-            const unitPrice = data.salePrices.find(price => price.unitId == selectedUnit).price;
+            const unitPrice = data.salePrices.find(price => price.unitId === selectedUnit).price;
             const total = Number(unitPrice) * quantity;
-            const unitName = data.units.find(unit => unit.id == selectedUnit ).name;
+            const unitName = data.units.find(unit => unit.id === selectedUnit ).name;
             onAdd({ ...item, unitId: selectedUnit, unitName, quantity: Number(quantity), unitPrice, total  });
             setSelectedUnit('');
             setQuantity('');
