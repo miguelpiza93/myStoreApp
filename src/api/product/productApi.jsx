@@ -35,7 +35,7 @@ export const productApi = createApi({
         }),
         setSalePrice: builder.mutation({
             query: ({ productId, vendorId, ...body }) => ({
-                url: `api/v1/products/${productId}/vendors${vendorId}/prices`,
+                url: `api/v1/products/${productId}/vendors/${vendorId}/prices`,
                 method: 'PATCH',
                 body,
             }),
