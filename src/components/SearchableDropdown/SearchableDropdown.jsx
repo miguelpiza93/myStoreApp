@@ -6,6 +6,7 @@ const SearchableDropdown = ({
   data = [],
   searchField = "name",
   onSelect,
+  clearOnSelect = false,
 }) => {
   const [query, setQuery] = useState("");
   const [filteredData, setFilteredData] = useState([]);
@@ -14,7 +15,7 @@ const SearchableDropdown = ({
   const handleInputChange = (e) => {
     const value = e.target.value;
     setQuery(value);
-    
+
     if (value) {
       const filtered = data.filter((item) =>
         item[searchField].toLowerCase().includes(value.toLowerCase())
@@ -30,7 +31,12 @@ const SearchableDropdown = ({
   const handleSelect = (item) => {
     setQuery(item[searchField]);
     setShowDropdown(false);
-    if (onSelect) onSelect(item);
+    if (onSelect) { 
+      onSelect(item);
+      if (clearOnSelect){
+        setQuery("");
+      }
+    }
   };
 
   return (
