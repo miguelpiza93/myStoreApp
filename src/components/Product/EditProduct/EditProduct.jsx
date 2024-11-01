@@ -7,7 +7,7 @@ import styles from "./EditProduct.module.scss"
 
 const EditProduct = () => {
     const { productId, vendorId } = useParams();
-    const { data, error, isLoading } = useGetSupplierProductQuery({vendorId, productId});
+    const { data, error, isLoading, refetch: refetchSupplierProduct } = useGetSupplierProductQuery({vendorId, productId});
     const [setProductSalePrice] = useSetSalePriceMutation();
 
 
@@ -16,7 +16,10 @@ const EditProduct = () => {
     if (error) return <div>Error getting product!</div>;
 
     const onEdit = (data) => {
-        setProductSalePrice({ unitId: data.unitId, salePrice: data.price, productId, vendorId });
+        setProductSalePrice({ unitId: data.unitId, salePrice: data.price, productId, vendorId })
+        .then(() => {
+            refetchSupplierProduct();
+        });;
     };
 
 
