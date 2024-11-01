@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGetStockSummaryQuery } from "../../../api/stock/stockApi";
+import { useAddSaleMutation } from "../../../api/sale/saleApi";
 import SearchableDropdown from "../../SearchableDropdown";
 import Table from '../../Table';
 import AddItemModal from '../AddItemModal';
@@ -12,13 +13,28 @@ const RegisterSale = () => {
     const [selectedProducts, setSelectedProducts] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentItem, setCurrentItem] = useState(null); // Para guardar el item seleccionado
+    const [addSale] = useAddSaleMutation();
 
     if (isLoading) return <div>Loading...</div>
     if (!data) return <div>Missing stock!</div>
     if (error) return <div>Error getting stock!</div>
 
     const handleRegisterSale = () => {
-        navigate("/sales");
+        const saleData = {
+            items: selectedProducts.map(
+                selectedProduct => {
+                    return {
+                        vendorProductId: selectedProduct.vendorProductId,
+                        unitId: selectedProduct.unitId,
+                        quantity: selectedProduct.quantity,
+                    }
+                }
+            )
+        };
+        addSale(saleData)
+            .then(() => {
+                navigate("/sales");
+            });
     }
 
     // handleSelect se ejecuta cuando un elemento es seleccionado

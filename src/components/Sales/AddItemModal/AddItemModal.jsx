@@ -14,10 +14,12 @@ const AddItemModal = ({ isOpen, onClose, onAdd, item }) => {
 
     const handleAddClick = () => {
         if (selectedUnit && quantity) {
-            const unitPrice = data.salePrices.find(price => price.unitId === selectedUnit).price;
-            const total = Number(unitPrice) * quantity;
-            const unitName = data.units.find(unit => unit.id === selectedUnit ).name;
-            onAdd({ ...item, unitId: selectedUnit, unitName, quantity: Number(quantity), unitPrice, total  });
+            const selectedUnitId = Number(selectedUnit);
+            const parsedQuantity = Number(quantity);
+            const unitPrice = data.salePrices.find(price => price.unitId === selectedUnitId).price;
+            const total = Number(unitPrice) * parsedQuantity;
+            const unitName = data.units.find(unit => unit.id === selectedUnitId ).name;
+            onAdd({ ...item, unitId: selectedUnit, unitName, quantity: parsedQuantity, unitPrice, total  });
             setSelectedUnit('');
             setQuantity('');
             onClose(); // Cierra el modal después de agregar
