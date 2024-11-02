@@ -67,6 +67,8 @@ const Row = ({ data, columns, onEdit, onDelete, onDetail }) => {
         return <ReadOnlyCell value={finalValue} />;
     };
 
+    const displayActionColumns = onEdit || onDelete || onDelete;
+
     return (
         <tr key={`tr_${data.id}`}>
             {columns.map((columnDefinition) => (
@@ -74,24 +76,25 @@ const Row = ({ data, columns, onEdit, onDelete, onDetail }) => {
                     {renderCell(columnDefinition)}
                 </td>
             ))}
-            <td className={styles.actions}>
-                {onDetail && <span onClick={() => onDetail(data)}><FontAwesomeIcon icon={faArrowRight} /></span>}
+            {displayActionColumns && (
+                <td className={styles.actions}>
+                    {onDetail && <span onClick={() => onDetail(data)}><FontAwesomeIcon icon={faArrowRight} /></span>}
 
-                {onEdit && (
-                    <>
-                        {isEditing ? (
-                            <>
-                                <span onClick={handleSave}><FontAwesomeIcon icon={faFloppyDisk} /></span>
-                                <span onClick={handleCancel}><FontAwesomeIcon icon={faBan} /></span>
-                            </>
-                        ) : (
-                            <span onClick={() => setIsEditing(true)}><FontAwesomeIcon icon={faPencil} /></span>
-                        )}
-                    </>
-                )}
-
-                {onDelete && <span onClick={() => onDelete(data)}><FontAwesomeIcon icon={faTrash} /></span>}
-            </td>
+                    {onEdit && (
+                        <>
+                            {isEditing ? (
+                                <>
+                                    <span onClick={handleSave}><FontAwesomeIcon icon={faFloppyDisk} /></span>
+                                    <span onClick={handleCancel}><FontAwesomeIcon icon={faBan} /></span>
+                                </>
+                            ) : (
+                                <span onClick={() => setIsEditing(true)}><FontAwesomeIcon icon={faPencil} /></span>
+                            )}
+                        </>
+                    )}
+                    {onDelete && <span onClick={() => onDelete(data)}><FontAwesomeIcon icon={faTrash} /></span>}
+                </td>
+            )}
         </tr>
     );
 };
