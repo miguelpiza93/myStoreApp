@@ -3,6 +3,7 @@ import { useGetSalesQuery } from "../../api/sale/saleApi";
 import { utcToLocalFormat } from "../../utils/DateUtils";
 import COP from "../../utils/CurrencyUtils"
 import Table from '../Table';
+import styles from "./Sales.module.scss"
 
 const Sales = () => {
     const navigate = useNavigate();
@@ -17,7 +18,7 @@ const Sales = () => {
     if (error) return <div>Error getting sales!</div>
 
     return (
-        <div>
+        <div className={styles.wrapper} >
             <button onClick={handleRegisterSale} aria-labelledby="submit">
                 Registar Venta
             </button>
