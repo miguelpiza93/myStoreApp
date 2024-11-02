@@ -8,7 +8,7 @@ import AddItemModal from '../AddItemModal';
 
 const RegisterSale = () => {
     const navigate = useNavigate();
-    const { data, error, isLoading } = useGetStockSummaryQuery();
+    const { data, error, isLoading, refetch: refetchStockSummary } = useGetStockSummaryQuery();
 
     const [selectedProducts, setSelectedProducts] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -32,6 +32,7 @@ const RegisterSale = () => {
             )
         };
         addSale(saleData)
+            .then(refetchStockSummary)
             .then(() => {
                 navigate("/sales");
             });
