@@ -67,7 +67,7 @@ const Row = ({ data, columns, onEdit, onDelete, onDetail }) => {
         return <ReadOnlyCell value={finalValue} />;
     };
 
-    const displayActionColumns = onEdit || onDelete || onDelete;
+    const displayActionColumns = onEdit || onDelete || onDetail;
 
     return (
         <tr key={`tr_${data.id}`}>

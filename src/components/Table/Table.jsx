@@ -4,7 +4,7 @@ import Row from './Row';
 import styles from "./Table.module.scss"
 
 const Table = ({ className, columns, data, onEdit, onDelete, onDetail }) => {
-  const displayActionColumns = onEdit || onDelete || onDelete;
+  const displayActionColumns = onEdit || onDelete || onDetail;
   return (
     <table className={cn(className, styles.table)}>
       <thead>
