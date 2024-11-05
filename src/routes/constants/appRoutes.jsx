@@ -104,6 +104,12 @@ export const getAppRoutes = () => [
         href: '/settings/products',
         rightBadge: undefined,
       },
+      {
+        isActive: ({ pathname }) => pathname.includes('settings') && pathname.includes('units'),
+        label: 'Units',
+        href: '/settings/units',
+        rightBadge: undefined,
+      },
     ],
     hidden: false
   },
