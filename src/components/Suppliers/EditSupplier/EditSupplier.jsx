@@ -19,7 +19,7 @@ const EditSupplier = () => {
             state.products.map(({ id, price }) => [id, parseInt(price)])
         );
         await addProductToSupplier({ id: supplierId, body: { products: productsToLink } });
-        navigate("/suppliers");
+        navigate("/settings/suppliers");
     };
 
     if (isLoading) return <div>Loading...</div>;

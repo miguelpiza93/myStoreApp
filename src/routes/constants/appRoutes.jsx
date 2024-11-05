@@ -1,7 +1,8 @@
-import { AddProduct, ProductList, EditProduct } from "../../components/Product";
-import { SupplierList, Supplier } from "../../components/Suppliers";
+import { AddProduct, EditProduct } from "../../components/Product";
+import { Supplier } from "../../components/Suppliers";
 import { StockList } from "../../components/Stock";
 import { Sales, RegisterSale } from "../../components/Sales";
+import Settings from "../Settings";
 import EditSupplier from "../../components/Suppliers/EditSupplier";
 import { PurchaseOrderList, PurchaseOrderDetail, AddPurchaseOrder } from "../../components/PurchaseOrder";
 import Icons from "../../components/Icons/Icons";
@@ -50,29 +51,11 @@ export const getAppRoutes = () => [
     hidden: true
   },
   {
-    icon: 'ProductIcon',
-    label: 'Products',
-    href: '/products',
-    rightBadge: undefined,
-    childRoutes: [],
-    componentToDisplay: ProductList,
-    hidden: false
-  },
-  {
     href: '/products/:productId/vendor/:vendorId',
     rightBadge: undefined,
     childRoutes: [],
     componentToDisplay: EditProduct,
     hidden: true
-  },
-  {
-    icon: 'SupplierIcon',
-    label: 'Suppliers',
-    href: '/suppliers',
-    rightBadge: undefined,
-    childRoutes: [],
-    componentToDisplay: SupplierList,
-    hidden: false
   },
   {
     href: '/products/create',
@@ -101,6 +84,28 @@ export const getAppRoutes = () => [
     childRoutes: [],
     componentToDisplay: PurchaseOrderDetail,
     hidden: true
+  },
+  {
+    icon: 'SettingsIcon',
+    label: 'Settings',
+    href: '/settings',
+    componentToDisplay: Settings,
+    rightBadge: undefined,
+    childRoutes: [
+      {
+        isActive: ({ pathname }) => pathname.includes('settings') && pathname.includes('suppliers'),
+        label: 'Suppliers',
+        href: '/settings/suppliers',
+        rightBadge: undefined,
+      },
+      {
+        isActive: ({ pathname }) => pathname.includes('settings') && pathname.includes('products'),
+        label: 'Products',
+        href: '/settings/products',
+        rightBadge: undefined,
+      },
+    ],
+    hidden: false
   },
   {
     icon: 'ProductIcon',

@@ -26,7 +26,7 @@ const AddProduct = () => {
     const onAddProductClick = () => {
         addProduct({ ...product })
             .then(() => {
-                navigate("/products");
+                navigate("/settings/products");
             });
     };
 

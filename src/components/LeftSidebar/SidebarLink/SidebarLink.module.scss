@@ -16,4 +16,12 @@
 
 .active {
     background-color: #e7e8f1;
+    &.withSubRoutes {
+      background-color: inherit;
+    }
+}
+
+.childRoutes {
+  display: flex;
+  flex-direction: column;
 }

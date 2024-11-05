@@ -16,7 +16,7 @@ const Supplier = () => {
             state.products.map(({ id, price }) => [id, price])
         );
         await addProductToSupplier({ id: supplierId, body: { products: productsToLink } });
-        navigate("/suppliers");
+        navigate("/settings/suppliers");
     };
 
     return (
