@@ -17,7 +17,7 @@ const EditableCell = ({ columnDefinition, value, onChange }) => {
 
 // Función para crear una celda no editable
 const ReadOnlyCell = ({ value }) => {
-    return <span>{value}</span>;
+    return <span>{`${value}`}</span>;
 };
 
 const Row = ({ data, columns, onEdit, onDelete, onDetail }) => {
