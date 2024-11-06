@@ -12,6 +12,7 @@ const createInputField = (field, data, onFieldChange) => (
         value={data[field.name]}
         onChange={onFieldChange}
         required
+        className={styles.inputField}
     />
 );
 
@@ -22,6 +23,7 @@ const createSelectField = (field, data, onFieldChange) => (
         value={data[field.name] || ''}
         onChange={onFieldChange}
         required
+        className={styles.inputField}
     >
         <option value="" disabled>{field.placeholder}</option>
         {field.options.map(option => (
@@ -32,16 +34,38 @@ const createSelectField = (field, data, onFieldChange) => (
     </select>
 );
 
+// Función para crear el campo de checkbox
+const createCheckboxField = (field, data, onFieldChange) => (
+    <label className={styles.checkboxField}>
+        <span>{field.placeholder}</span>
+        <input
+            type="checkbox"
+            name={field.name}
+            checked={data[field.name] || false}
+            onChange={e => onFieldChange({ target: { name: field.name, value: e.target.checked } })}
+        />
+    </label>
+);
+
+// Función para renderizar el campo según su tipo
+const renderFieldByType = (field, data, onFieldChange) => {
+    switch (field.type) {
+        case 'selection':
+            return createSelectField(field, data, onFieldChange);
+        case 'boolean':
+            return createCheckboxField(field, data, onFieldChange);
+        default:
+            return createInputField(field, data, onFieldChange);
+    }
+};
+
 const Form = ({ className, title, fields, data, onFieldChange, onSubmit }) => {
     return (
         <div className={cn(className, styles.wrapper)}>
             <strong>{title}</strong>
             {fields.map(field => (
-                <div key={field.name}>
-                    {field.type === 'selection'
-                        ? createSelectField(field, data, onFieldChange)
-                        : createInputField(field, data, onFieldChange)
-                    }
+                <div key={field.name} className={styles.field}>
+                    {renderFieldByType(field, data, onFieldChange)}
                 </div>
             ))}
 

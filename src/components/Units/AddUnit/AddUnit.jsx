@@ -28,17 +28,6 @@ const AddUnit = () => {
         setUnit({ ...unit, [name]: value });
     };
 
-    const booleanOptions = [
-        {
-            key: true,
-            value: `Si`
-        },
-        {
-            key: false,
-            value: `No`
-        }
-    ]
-
     const fields = [
         {
             name: 'name',
@@ -52,15 +41,13 @@ const AddUnit = () => {
         },
         {
             name: 'isFractional',
-            type: 'selection',
+            type: 'boolean',
             placeholder: "Permite decimales",
-            options: booleanOptions,
         },
         {
             name: 'isBaseUnit',
-            type: 'selection',
+            type: 'boolean',
             placeholder: "Es unidad mínima",
-            options: booleanOptions,
         },
     ];
 
