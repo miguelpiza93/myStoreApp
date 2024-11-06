@@ -34,11 +34,11 @@ const UnitList = () => {
             },
             {
               label: 'Allow fractions',
-              accessor: 'fractional'
+              accessor: 'isFractional'
             },
             {
               label: 'Is Base',
-              accessor: 'baseUnit'
+              accessor: 'isBaseUnit'
             },
           ]
         }

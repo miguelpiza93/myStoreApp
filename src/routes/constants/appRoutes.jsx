@@ -2,6 +2,7 @@ import { AddProduct, EditProduct } from "../../components/Product";
 import { Supplier } from "../../components/Suppliers";
 import { StockList } from "../../components/Stock";
 import { Sales, RegisterSale } from "../../components/Sales";
+import { AddUnit } from "../../components/Units";
 import Settings from "../Settings";
 import EditSupplier from "../../components/Suppliers/EditSupplier";
 import { PurchaseOrderList, PurchaseOrderDetail, AddPurchaseOrder } from "../../components/PurchaseOrder";
@@ -48,6 +49,13 @@ export const getAppRoutes = () => [
     rightBadge: undefined,
     childRoutes: [],
     componentToDisplay: AddPurchaseOrder,
+    hidden: true
+  },
+  {
+    href: '/units/create',
+    rightBadge: undefined,
+    childRoutes: [],
+    componentToDisplay: AddUnit,
     hidden: true
   },
   {
