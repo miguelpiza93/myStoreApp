@@ -16,9 +16,18 @@ export const unitApi = createApi({
                     ] :
                     [{ type: 'Unit', id: 'LIST' },]
         }),
+        addUnit: builder.mutation({
+            query: (body) => ({
+                url: 'api/v1/units',
+                method: 'POST',
+                body,
+            }),
+            invalidatesTags: [{ type: 'Unit', id: 'LIST' }]
+        }),
     }),
 })
 
 export const {
     useGetUnitsQuery,
+    useAddUnitMutation,
 } = unitApi;
