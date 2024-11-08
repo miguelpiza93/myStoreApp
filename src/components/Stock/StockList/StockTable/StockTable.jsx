@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useGetStockSummaryQuery } from "../../../../api/stock/stockApi";
 import Table from '../../../Table';
+import COP from "../../../../utils/CurrencyUtils"
 
 const StockTable = ({ className }) => {
   const { data: stock, error, isLoading } = useGetStockSummaryQuery();
@@ -29,12 +30,13 @@ const StockTable = ({ className }) => {
           },
           {
             label: 'Costo Ponderado',
-            accessor: 'weightedCost'
+            accessor: 'weightedCost',
+            formatter: COP,
           }
         ]
       }
       data={stock.map(item => {
-        return { id: item.vendorProductId, ...item }
+        return { ...item, id: item.vendorProductId, quantity: `${item.quantity} (${item.baseUnitSymbol})` }
       })}
       onDetail={(item) => handleRedirectToDetail(item)}
     />
