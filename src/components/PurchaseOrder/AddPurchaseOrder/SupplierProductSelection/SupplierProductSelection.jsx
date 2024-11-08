@@ -13,7 +13,8 @@ const SupplierProductSelection = ({ className, supplierId, onChange }) => {
             unitPrice: sp.price,
             name: sp.product.name,
             description: sp.product.description,
-            baseUnitSymbol: sp.product.baseUnitSymbol,
+            referenceUnitSymbol: sp.product.referenceUnitSymbol,
+            fractionalUnit: sp.product.fractionalUnit,
         }
     })
 

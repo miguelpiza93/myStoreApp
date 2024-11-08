@@ -2,16 +2,12 @@ import cn from 'classnames';
 import { useState } from "react";
 import SupplierSelection from "../SupplierSelection"
 import { SupplierProductSelection, SupplierProductSelectionSkeleton } from "../SupplierProductSelection"
+import { NumericInput } from '../../../NumericInput'
 import styles from "./SelectingSection.module.scss"
 
 const SelectingSection = ({ className, onAdd, onSupplierSelection, selectedSupplier }) => {
     const [selectedProduct, setSelectedProduct] = useState();
     const [quantity, setQuantity] = useState(0);
-
-    const handleQuantityChange = (e) => {
-        const { value } = e.target;
-        setQuantity(value ? parseInt(value) : "");
-    }
 
     const handleAddProduct = () => {
         const productInfoToAdd = {
@@ -30,16 +26,15 @@ const SelectingSection = ({ className, onAdd, onSupplierSelection, selectedSuppl
                 : <SupplierProductSelection className={styles.option} supplierId={selectedSupplier?.id} onChange={setSelectedProduct} />
             }
             <div className={styles.option}>
-                <label htmlFor="quantity">Cantidad {selectedProduct ? `(${selectedProduct.baseUnitSymbol})` : ''}:</label>
-                <input
+                <label htmlFor="quantity">Cantidad {selectedProduct ? `(${selectedProduct.referenceUnitSymbol})` : ''}:</label>
+                <NumericInput
                     id="quantity"
-                    type="number"
                     name="quantity"
                     value={quantity}
-                    onChange={handleQuantityChange}
-                    required
-                    aria-labelledby="quantity"
-                    disabled={!selectedProduct} />
+                    onChange={setQuantity}
+                    disabled={!selectedProduct}
+                    allowDecimals={selectedProduct?.fractionalUnit}
+                />
             </div>
             <div>
                 <button disabled={quantity <= 0} onClick={handleAddProduct}>
