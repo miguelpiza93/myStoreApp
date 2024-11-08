@@ -30,7 +30,7 @@ const SelectingSection = ({ className, onAdd, onSupplierSelection, selectedSuppl
                 : <SupplierProductSelection className={styles.option} supplierId={selectedSupplier?.id} onChange={setSelectedProduct} />
             }
             <div className={styles.option}>
-                <label htmlFor="quantity">Cantidad:</label>
+                <label htmlFor="quantity">Cantidad {selectedProduct ? `(${selectedProduct.baseUnitSymbol})` : ''}:</label>
                 <input
                     id="quantity"
                     type="number"
