@@ -71,7 +71,7 @@ const Form = ({ className, title, fields, data, onFieldChange, onSubmit }) => {
 
             {onSubmit && (
                 <div className={styles.actionContainer}>
-                    <button onClick={onSubmit}>Submit</button>
+                    <button onClick={onSubmit}>Guardar</button>
                 </div>
             )}
         </div>

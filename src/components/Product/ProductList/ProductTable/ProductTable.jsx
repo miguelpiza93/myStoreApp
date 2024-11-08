@@ -16,11 +16,11 @@ const ProductTable = ({ className }) => {
       columns={
         [
           {
-            label: 'Name',
+            label: 'Nombre',
             accessor: 'name'
           },
           {
-            label: 'Description',
+            label: 'Descripción',
             accessor: 'description'
           }
         ]

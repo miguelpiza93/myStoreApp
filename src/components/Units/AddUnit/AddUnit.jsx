@@ -32,7 +32,7 @@ const AddUnit = () => {
         {
             name: 'name',
             type: 'text',
-            placeholder: "Name"
+            placeholder: "Nombre"
         },
         {
             name: 'symbol',

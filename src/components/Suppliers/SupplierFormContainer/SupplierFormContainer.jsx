@@ -40,12 +40,12 @@ const SupplierFormContainer = ({ initialData = INITIAL_STATE, onSave }) => {
         {
             name: 'name',
             type: 'text',
-            placeholder: "Name"
+            placeholder: "Nombre"
         },
         {
             name: 'phone',
             type: 'text',
-            placeholder: "Phone"
+            placeholder: "Teléfono"
         },
     ];
 
@@ -68,7 +68,7 @@ const SupplierFormContainer = ({ initialData = INITIAL_STATE, onSave }) => {
                 onPriceChange={handlePriceChange}
             />
             <button disabled={isLoading} onClick={handleSubmit} aria-labelledby="submit">
-                Save
+                Guardar
             </button>
         </div>
     );

@@ -34,9 +34,9 @@ const PurchaseOrderDetail = () => {
     return (
         <div>
             <div className={styles.orderInformation}>
-                <div><strong>Supplier: </strong>{data.supplierName}</div>
-                <div><strong>Creation Date: </strong>{utcToLocalFormat(data.createdAt)}</div>
-                <div><strong>Estimated Delivery Date: </strong>{utcToLocalFormat(data.estimatedDeliveryDate, true)}</div>
+                <div><strong>Proveedor: </strong>{data.supplierName}</div>
+                <div><strong>Fecha de solicitud: </strong>{utcToLocalFormat(data.createdAt)}</div>
+                <div><strong>Fecha estimada de llegada: </strong>{utcToLocalFormat(data.estimatedDeliveryDate, true)}</div>
             </div>
             <SelectedProducts productInfoList={data.purchaseOrderLines.map(purchaseOrder => {
                 return {

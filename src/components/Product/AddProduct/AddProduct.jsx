@@ -46,12 +46,12 @@ const AddProduct = () => {
         {
             name: 'name',
             type: 'text',
-            placeholder: "Name"
+            placeholder: "Nombre"
         },
         {
             name: 'description',
             type: 'text',
-            placeholder: "Description"
+            placeholder: "Descripción"
         },
         {
             name: 'referenceUnitId',

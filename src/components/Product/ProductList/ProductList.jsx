@@ -11,7 +11,7 @@ const ProductList = () => {
     <div className={styles.wrapper} >
       <div className={styles.options}>
         <button onClick={handleRedirectToAddProduct} aria-label="Add Product">
-          Add Product
+          Agregar Producto
         </button>
       </div>
       <ProductTable className={styles.table} />

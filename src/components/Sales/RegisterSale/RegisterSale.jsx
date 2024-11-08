@@ -74,7 +74,7 @@ const RegisterSale = () => {
         <div>
             <h1>Registrar Venta</h1>
             <SearchableDropdown
-                placeholder="Search for a product..."
+                placeholder="Busca un producto..."
                 data={stockData}
                 searchField="fullDescription"
                 onSelect={handleSelect}

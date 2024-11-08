@@ -18,9 +18,9 @@ const SupplierSelection = ({ className, onChange }) => {
 
     return (
         <div className={className}>
-            <label htmlFor="supplier-select">Supplier:</label>
+            <label htmlFor="supplier-select">Proveedor:</label>
             <select name="suppliers" id="supplier-select" onChange={onChangeSelection} disabled={isSupplierSelected}>
-                <option value="">Select an option</option>
+                <option value="">Seleccione una opción</option>
                 {suppliers.map(supplier => {
                     return <option key={supplier.id} value={supplier.id}>{supplier.name}</option>
                 })}

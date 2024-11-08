@@ -6,7 +6,7 @@ import Table from '../../../Table';
 const SelectedProducts = ({ productInfoList, onEdit }) => {
     return (
         <div className={styles.wrapper}>
-            <strong>Selected products</strong>
+            <strong>Productos seleccionados</strong>
             <Table
                 columns={
                     [

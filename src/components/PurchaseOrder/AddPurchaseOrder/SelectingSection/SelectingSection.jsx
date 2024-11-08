@@ -38,7 +38,7 @@ const SelectingSection = ({ className, onAdd, onSupplierSelection, selectedSuppl
             </div>
             <div>
                 <button disabled={quantity <= 0} onClick={handleAddProduct}>
-                    Add
+                    Agregar
                 </button>
             </div>
         </div>

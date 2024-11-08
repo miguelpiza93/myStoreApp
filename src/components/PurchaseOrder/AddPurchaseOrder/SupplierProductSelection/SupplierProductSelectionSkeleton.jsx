@@ -1,9 +1,9 @@
 const SupplierProductSelectionSkeleton = ({ className }) => {
     return (
         <div className={className}>
-            <label htmlFor="product-select">Product:</label>
+            <label htmlFor="product-select">Producto:</label>
             <select name="products" id="product-select" disabled>
-                <option value="">Select an option</option>
+                <option value="">Seleccione una opción</option>
             </select>
         </div>
     )

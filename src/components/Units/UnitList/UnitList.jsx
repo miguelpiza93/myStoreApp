@@ -18,26 +18,26 @@ const UnitList = () => {
     <div className={styles.wrapper} >
       <div className={styles.options}>
         <button onClick={handleRedirectToAddItem} aria-label="Add Unit">
-          Add Unit
+          Agregar Medida
         </button>
       </div>
       <Table
         columns={
           [
             {
-              label: 'Name',
+              label: 'Nombre',
               accessor: 'name'
             },
             {
-              label: 'Symbol',
+              label: 'Abreviatura',
               accessor: 'symbol'
             },
             {
-              label: 'Allow fractions',
+              label: 'Permite decimales',
               accessor: 'isFractional'
             },
             {
-              label: 'Is Base',
+              label: 'Es medida base',
               accessor: 'isBaseUnit'
             },
           ]

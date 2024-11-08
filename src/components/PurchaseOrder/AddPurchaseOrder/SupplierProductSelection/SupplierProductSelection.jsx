@@ -26,9 +26,9 @@ const SupplierProductSelection = ({ className, supplierId, onChange }) => {
 
     return (
         <div className={className}>
-            <label htmlFor="product-select">Product:</label>
+            <label htmlFor="product-select">Producto:</label>
             <select name="products" id="product-select" onChange={handleProductSelection}>
-                <option value="">Select an option</option>
+                <option value="">Seleccione una opción</option>
                 {productsDataInfo.map(product => {
                     return <option key={product.id} value={product.id}>{product.name} - {product.description}</option>
                 })}

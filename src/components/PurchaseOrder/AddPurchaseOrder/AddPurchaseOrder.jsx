@@ -71,7 +71,7 @@ const AddPurchaseOrder = () => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.child}>
-                <label htmlFor="start">Estimated delivery date:</label>
+                <label htmlFor="start">Fecha estimada de entrega:</label>
                 <input
                     type="date"
                     id="start"
@@ -85,7 +85,7 @@ const AddPurchaseOrder = () => {
             <SelectedProducts productInfoList={selection} onEdit={onEdit} />
             <div>
                 <button disabled={!selection} onClick={handleCreateOrder}>
-                    Save
+                    Guardar orden
                 </button>
             </div>
         </div>

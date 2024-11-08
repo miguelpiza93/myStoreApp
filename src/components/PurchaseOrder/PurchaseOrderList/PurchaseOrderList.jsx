@@ -23,22 +23,22 @@ const PurchaseOrderList = () => {
         <div className={styles.wrapper} >
             <div className={styles.options}>
                 <button onClick={handleRedirectToNewPurchaseOrder} aria-label="Create">
-                    Create
+                    Crear Orden
                 </button>
             </div>
             <Table className={styles.table}
                 columns={
                     [
                         {
-                            label: 'Supplier Name',
+                            label: 'Proveedor',
                             accessor: 'supplierName'
                         },
                         {
-                            label: 'Status',
+                            label: 'Estado',
                             accessor: 'status'
                         },
                         {
-                            label: 'Creation Date',
+                            label: 'Fecha de creación',
                             accessor: 'createdAt'
                         },
                     ]

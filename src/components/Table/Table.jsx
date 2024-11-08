@@ -13,7 +13,7 @@ const Table = ({ className, columns, data, onEdit, onDelete, onDetail }) => {
             <th key={columnDefinition.accessor} >{columnDefinition.label}</th>
           ))}
           {displayActionColumns &&(
-            <th className={styles.actions} >Actions</th>
+            <th className={styles.actions} >Acciones</th>
           )}
         </tr>
       </thead>

@@ -12,7 +12,7 @@ import Icons from "../../components/Icons/Icons";
 export const getAppRoutes = () => [
   {
     icon: 'SalesIcon',
-    label: 'Sales',
+    label: 'Ventas',
     href: '/sales',
     rightBadge: undefined,
     childRoutes: [],
@@ -28,7 +28,7 @@ export const getAppRoutes = () => [
   },
   {
     icon: 'StockIcon',
-    label: 'Stock',
+    label: 'Inventario',
     href: '/stock',
     rightBadge: undefined,
     childRoutes: [],
@@ -37,7 +37,7 @@ export const getAppRoutes = () => [
   },
   {
     icon: 'PurchaseIcon',
-    label: 'Purchase Orders',
+    label: 'Órdenes de compra',
     href: '/purchase-orders',
     rightBadge: undefined,
     childRoutes: [],
@@ -95,26 +95,26 @@ export const getAppRoutes = () => [
   },
   {
     icon: 'SettingsIcon',
-    label: 'Settings',
+    label: 'Ajustes',
     href: '/settings',
     componentToDisplay: Settings,
     rightBadge: undefined,
     childRoutes: [
       {
         isActive: ({ pathname }) => pathname.includes('settings') && pathname.includes('suppliers'),
-        label: 'Suppliers',
+        label: 'Proveedores',
         href: '/settings/suppliers',
         rightBadge: undefined,
       },
       {
         isActive: ({ pathname }) => pathname.includes('settings') && pathname.includes('products'),
-        label: 'Products',
+        label: 'Productos',
         href: '/settings/products',
         rightBadge: undefined,
       },
       {
         isActive: ({ pathname }) => pathname.includes('settings') && pathname.includes('units'),
-        label: 'Units',
+        label: 'Medidas',
         href: '/settings/units',
         rightBadge: undefined,
       },
