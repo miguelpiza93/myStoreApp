@@ -15,14 +15,14 @@ export const saleApi = createApi({
             invalidatesTags: [{ type: 'Sale', id: 'LIST' }]
         }),
         getSales: builder.query({
-            query: () => 'api/v1/sales',
+            query: (groupBy) => `api/v1/sales?groupBy=${groupBy}`,
             providesTags: (result) =>
                 result ?
                     [
                         ...result.map(({ id }) => ({ type: 'Sale', id })),
                         { type: 'Sale', id: 'LIST' },
                     ] :
-                    [{ type: 'Sale', id: 'LIST' },]
+                    [{ type: 'Sale', id: 'LIST' }],
         }),
     }),
 })

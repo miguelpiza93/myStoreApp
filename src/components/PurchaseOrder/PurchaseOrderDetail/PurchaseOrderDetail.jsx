@@ -35,8 +35,8 @@ const PurchaseOrderDetail = () => {
         <div>
             <div className={styles.orderInformation}>
                 <div><strong>Proveedor: </strong>{data.supplierName}</div>
-                <div><strong>Fecha de solicitud: </strong>{utcToLocalFormat(data.createdAt)}</div>
-                <div><strong>Fecha estimada de llegada: </strong>{utcToLocalFormat(data.estimatedDeliveryDate, true)}</div>
+                <div><strong>Fecha de solicitud: </strong>{utcToLocalFormat(data.createdAt, 'fullDay')}</div>
+                <div><strong>Fecha estimada de llegada: </strong>{utcToLocalFormat(data.estimatedDeliveryDate, 'day')}</div>
             </div>
             <SelectedProducts productInfoList={data.purchaseOrderLines.map(purchaseOrder => {
                 return {
